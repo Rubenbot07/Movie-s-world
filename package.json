@@ -1,0 +1,19 @@
+{
+  "name": "movie-s-world",
+  "version": "1.0.0",
+  "description": "Movie website consuming TMDB's API",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rubenbot07/Movie-s-world.git"
+  },
+  "author": "rubenbot07",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rubenbot07/Movie-s-world/issues"
+  },
+  "homepage": "https://github.com/Rubenbot07/Movie-s-world#readme"
+}
