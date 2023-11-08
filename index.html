@@ -5,8 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie's World</title>
     <link rel="stylesheet" href="./style/app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
 </head>
 <body>
-    <script src="./scripts/main.js"></script>
+    <header>
+        <nav>
+            <div class="bars__menu">
+                <span class="line1__bars-menu"></span>
+                <span class="line2__bars-menu"></span>
+                <span class="line3__bars-menu"></span>
+            </div>
+            <div class="logo">
+                <h1>Movie's World</h1>
+            </div>
+            <div class="search">
+                <input class="input-bar" type="text" placeholder="Search movies">
+                <img class="search-icon" src="./img/magnifying-glass.svg" alt="">
+            </div>
+        </nav>
+        <div class="menu">
+            <ul>
+                <li>Categories</li>
+                <li>Favorites</li>
+                <li>Contact</li>
+                <li>About us</li>
+            </ul>
+        </div>
+    </header>
+    <section class="slider-container">
+        <div class="categories">
+            <a href="">
+                Trending
+            </a>
+        </div>
+        <div class="movies-container">       
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                    <img src="./img/1.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./img/1.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                    <img src="./img/1.jpg" alt="">
+                    </div>
+                    ...
+                </div>
+                <!-- If we need pagination -->
+                <!-- <div class="swiper-pagination"></div> -->
+                
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                
+                <!-- If we need scrollbar -->
+                <!-- <div class="swiper-scrollbar"></div>
+                </div> -->
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="./scripts/main.js" type="module"></script>
 </body>
 </html>
