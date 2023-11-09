@@ -20,7 +20,8 @@
 
 .slider-container {
     width: 100vw;
-    position: fixed;
+    position: relative;
+    z-index: 0;
 }
 .movies-container {
     display: flex;

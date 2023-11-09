@@ -12,9 +12,7 @@
 .inactive {
     display: none;
 }
-.static {
-    height: 100vh;
-}
+
 body {
     background-color: var(--dark-color);
     width: 100vw;
