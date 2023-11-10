@@ -34,7 +34,7 @@ async function getTrendingMoviesPreview() {
 
 }
 
-getTrendingMoviesPreview()
+
 
 async function getCategoriesPreview() {
     const {data} = await api('genre/movie/list');
@@ -51,4 +51,26 @@ async function getCategoriesPreview() {
     })
 
 }
-getCategoriesPreview()
+
+async function categoriesSection() {
+    const { data } = await api('genre/movie/list');
+    const categories = data.genres;
+
+    categories.forEach(category => {
+        const genresContainer = document.querySelector('.genres-list');
+        const  genreListItem = document.createElement('li');
+        const  genreTitleContainer  = document.createElement('h3')
+        const  genreTitle  =  document.createTextNode(category.name)
+        genreListItem.classList.add('genres-list-item');
+        genresContainer.appendChild(genreListItem)
+        
+        const icon = document.createElement('img')
+        icon.classList.add('clapperboard')
+        icon.setAttribute('src', '/icons/clapper-clapperboard-svgrepo-com.svg')
+        genreListItem.appendChild(icon);
+        genreTitleContainer.appendChild(genreTitle)
+        genreListItem.appendChild(genreTitleContainer)
+
+    })
+}
+categoriesSection()

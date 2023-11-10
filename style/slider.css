@@ -1,23 +1,4 @@
 
-.categories {
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-}
-.categories a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--dark-color);
-    font-size: 1.4em;
-    background-color: var(--main-color);
-    border-radius: 12px;
-    width: 40vw;
-    margin-block-start: 16px;
-    margin-block-end: 16px;
-    text-decoration: none;
-}
-
 .slider-container {
     width: 100vw;
     position: relative;

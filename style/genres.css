@@ -1,0 +1,31 @@
+.genres-section {
+}
+.genres-container {
+    display: grid;
+    place-content: center;
+    width: auto;
+    height: auto;
+}
+.genres-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+    width: 50%;
+}
+.genres-list-item{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    color: var(--dark-color);
+}
+.genres-list-item .clapperboard {
+    width: 20px;
+}
+.genres-list-item h3 {
+    text-align: center;
+    border-radius: 8px;
+    width: 90px;
+    font-size: .9em;
+    background-color: var(--main-color);
+}
