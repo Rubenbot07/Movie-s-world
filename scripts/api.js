@@ -57,6 +57,7 @@ async function categoriesSection() {
     const categories = data.genres;
 
     categories.forEach(category => {
+        const genresMainContainer = document.querySelector('.genres-container')
         const genresContainer = document.querySelector('.genres-list');
         const  genreListItem = document.createElement('li');
         const  genreTitleContainer  = document.createElement('h3')
@@ -70,7 +71,12 @@ async function categoriesSection() {
         genreListItem.appendChild(icon);
         genreTitleContainer.appendChild(genreTitle)
         genreListItem.appendChild(genreTitleContainer)
-
+        
+        const moreButton = document.querySelector('.more-button')
+        moreButton.addEventListener('click', ()=> {
+            genresMainContainer.classList.toggle('active-genres-main-container')
+            moreButton.classList.toggle('active-more-button')
+        })  
     })
 }
 categoriesSection()

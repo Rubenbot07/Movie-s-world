@@ -29,4 +29,6 @@ categorieslist.addEventListener('click', ()=> {
     listElement.forEach(item => {
         item.classList.toggle('active-list-item')
     })
+    const rightArrow = document.querySelector('.right-arrow')
+    rightArrow.classList.toggle('active-right-arrow')
 })

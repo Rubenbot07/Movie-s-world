@@ -1,10 +1,16 @@
 .genres-section {
+    display: flex;
+    flex-direction: column;
+    height: auto;
 }
 .genres-container {
     display: grid;
-    place-content: center;
+    justify-content: center;
     width: auto;
-    height: auto;
+    height: 200px;
+    overflow: hidden;
+    transition: all  400ms ease;
+    
 }
 .genres-list {
     display: grid;
@@ -25,7 +31,29 @@
 .genres-list-item h3 {
     text-align: center;
     border-radius: 8px;
-    width: 90px;
-    font-size: .9em;
+    width: 104px;
+    height: 30px;
+    font-size: 1.1em;
     background-color: var(--main-color);
+}
+.more-button {
+    width: auto;
+    align-self: center;
+    margin-block-start: 4px;
+    margin-block-end: 10px;
+    transition: all 500ms ease;
+    background-color: transparent;
+    border: none;
+}
+.more-button img {
+    width: 30px;
+    height: 30px;
+}
+.active-more-button {
+    transform: rotate(180deg);
+    transition: all 500ms ease;
+}
+.active-genres-main-container {
+    height: 600px;
+    transition: all  400ms ease;
 }

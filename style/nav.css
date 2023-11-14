@@ -37,25 +37,25 @@ nav {
 }
 .menu {
     display: flex;
+    flex-direction: column;
     position: absolute;
     right: 800px;
     width: 100vw;
     padding-block-start: 20px;
-    transition: right 800ms ease;
+    transition: all 400ms ease;
     background-color: var(--main-color);
+    height: auto;
     min-height: 100vh;
     z-index: 1;
     padding-block-end: 20px;
 
 }
 .active-menu {
-    display: flex;
     right: 0px;
     flex-direction: column;
     opacity: 100;
-    width: 100vw;
     background-color: var(--main-color);
-    transition: right 400ms ease;
+    transition: all 400ms ease;
 }
 .list-item {
     display: flex;
@@ -75,19 +75,33 @@ nav {
     
 }
 .categories-title {
+    display: flex;
+    align-items: center;
     margin-block-end: 10px;
+    color: var(--dark-color);
+}
+.right-arrow{
+    width: 20px;
+    transition: all 300ms ease;
+
+}
+.active-right-arrow{
+    transform: rotate(90deg);
+    transition: all 300ms ease;
 }
 .categories-list {
-    height: 4px;
+    height: 1px;
     transition: all 400ms ease;
     width: fit-content;
+    padding-inline-start: 20px;
+    color: var(--dark-color);
+    list-style: none;
 }
 .active-menu-ul {
-    padding-inline-end: 16px;
     display: flex;
-    height: auto;
+    padding-inline-end: 16px;
     flex-direction: column;
-    list-style: none;
+    height: auto;
 }
 .logo {
     width: 80vw;
@@ -96,7 +110,7 @@ nav {
 nav .search{
     display: flex;
     align-items: center;
-    position: fixed;
+    position: absolute;
     right: 5%;
     height: 20px;
     width: auto;
