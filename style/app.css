@@ -1,6 +1,7 @@
 @import url(./nav.css);
 @import url(./slider.css);
 @import url(./genres.css);
+@import url(./trends.css);
 *{
     margin: 0;
     padding: 0;
@@ -24,7 +25,7 @@ body {
     justify-content: center;
     width: 100vw;
 }
-.titles a {
+.titles h2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +34,24 @@ body {
     background-color: var(--main-color);
     border-radius: 12px;
     width: 40vw;
-    margin-block-start: 16px;
-    margin-block-end: 16px;
+    margin-block-start: 32px;
+    margin-block-end: 32px;
     text-decoration: none;
+}
+
+.view-more-trends {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    background-color: transparent;
+    font-size: 1em;
+    border: 1px solid var(--main-color);
+    border-radius: 14px;
+    width: 30vw;
+    font-size: 1.2em;
+    font-family: 'Jockey One', sans-serif;
+    color: var(--main-color);
+    margin-block-end: 30px;
 }

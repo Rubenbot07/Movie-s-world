@@ -31,9 +31,26 @@ async function getTrendingMoviesPreview() {
         movieContainer.appendChild(movieImg);
         trendingPreviewMoviesContainer.appendChild(movieContainer)
     })
-
 }
 
+async function getTrendingMovies() {
+    const { data } = await api('trending/movie/day')
+    const movies = data.results;
+    console.log(movies);
+    movies.forEach(movie =>{
+        const trendingMovieContainer = document.querySelector('.trending-movies-container')
+        const trendMovieContainer = document.createElement('div')
+        const movieTitle = document.createElement('span')
+        const movieTitleText = document.createTextNode(movie.title)
+        movieTitle.appendChild(movieTitleText)
+        trendMovieContainer.classList.add('img-container')
+        const trendMovieImg  = document.createElement('img')
+        trendMovieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300'+ movie.poster_path)
+        trendingMovieContainer.appendChild(trendMovieContainer)
+        trendMovieContainer.appendChild(trendMovieImg)
+        trendMovieContainer.appendChild(movieTitle)
+    })
+}
 
 
 async function getCategoriesPreview() {

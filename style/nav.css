@@ -61,7 +61,7 @@ nav {
     display: flex;
     font-size: 0;
     list-style: none;
-    opacity: 1;
+    opacity: 1; 
     margin-inline-start: 15px;
     height: auto;
     transition: all 100ms ease;

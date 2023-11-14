@@ -43,9 +43,7 @@
     </header>
     <section class="slider-container">
         <div class="titles">
-            <a href="">
-                Trending
-            </a>
+            <h2>Trending</h2>
         </div>
         <div class="movies-container">       
             <div class="swiper">
@@ -66,14 +64,26 @@
                 
                 <!-- If we need scrollbar -->
                 <!-- <div class="swiper-scrollbar"></div>
-                </div> -->
+                </div> -->        
+            </div>
+        </div>
+        <button class="view-more-trends">View More</button>
+    </section>
+
+    <section class="trends-section inactive">
+        <h2>Trending</h2>
+        <div class="trending-movies-container">
+            <!-- <div class="img-container">
+                <img src="" alt="">
+                <span class="movie"></span>
+            </div> -->
         </div>
     </section>
+
+
     <section class="genres-section">
         <div class="titles">
-            <a href="">
-                Genres
-            </a>
+            <h2>Genres</h2>
         </div>
         <div class="genres-container">
             <ul class="genres-list">
@@ -83,16 +93,16 @@
                 </li> -->
             </ul>
         </div>
-        <button class="more-button"><img src="./icons/down-arrow.svg" alt=""></button>
+        <button class="more-button"><img class="down-arrow" src="./icons/down-arrow.svg" alt=""></button>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="./scripts/nodes.js"></script>
     <script src="./scripts/secrets.js"></script>
     <script src="./scripts/api.js"></script>
     <script src="./scripts/main.js" type="module"></script>
     <!-- <script src="./scripts/nav.js"></script> -->
     <script src="./scripts/slider.js"></script>
     <script src="./scripts/navigation.js"></script>
-    <script src="./scripts/nodes.js"></script>
 </body>
 </html>

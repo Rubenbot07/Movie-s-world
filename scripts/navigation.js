@@ -19,10 +19,19 @@ function navigator() {
 function homePage() {
     getTrendingMoviesPreview()
     getCategoriesPreview()
+    sliderContainer.classList.remove('inactive')
+    genreSection.classList.remove('inactive')
+    trendSection.classList.add('inactive')
+
 }
 function trendsPage() {
     console.log('Trends');
     getCategoriesPreview()
+    sliderContainer.classList.add('inactive')
+    getTrendingMovies()
+    trendSection.classList.remove('inactive')
+    genreSection.classList.add('inactive')
+
 }
 function searchPage() {
     console.log('Search');
