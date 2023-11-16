@@ -15,10 +15,17 @@ function navigator() {
     }
 
 }
+viewMoreTrends.addEventListener('click', ()=>  {
+    location.hash = '#trends';
+})
+backButton.addEventListener('click', ()=> {
+    location.hash = 'home'
+})
 
 function homePage() {
     getTrendingMoviesPreview()
     getCategoriesPreview()
+    categoriesSection()
     sliderContainer.classList.remove('inactive')
     genreSection.classList.remove('inactive')
     trendSection.classList.add('inactive')

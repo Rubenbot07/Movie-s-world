@@ -37,8 +37,9 @@ async function getTrendingMovies() {
     const { data } = await api('trending/movie/day')
     const movies = data.results;
     console.log(movies);
+    trendingMovieContainer.innerHTML = ''
     movies.forEach(movie =>{
-        const trendingMovieContainer = document.querySelector('.trending-movies-container')
+        // const trendingMovieContainer = document.querySelector('.trending-movies-container')
         const trendMovieContainer = document.createElement('div')
         const movieTitle = document.createElement('span')
         const movieTitleText = document.createTextNode(movie.title)
@@ -52,13 +53,13 @@ async function getTrendingMovies() {
     })
 }
 
-
 async function getCategoriesPreview() {
     const {data} = await api('genre/movie/list');
     const categories = data.genres;
+    categoriesContainer.innerHTML = '';
 
     categories.forEach(category => {
-        const categoriesContainer = document.querySelector('.categories-list');
+        // const categoriesContainer = document.querySelector('.categories-list');
         const listItem = document.createElement('li')
         listItem.classList.add('list-item')
         categoriesContainer.appendChild(listItem)
@@ -72,10 +73,9 @@ async function getCategoriesPreview() {
 async function categoriesSection() {
     const { data } = await api('genre/movie/list');
     const categories = data.genres;
-
     categories.forEach(category => {
-        const genresMainContainer = document.querySelector('.genres-container')
-        const genresContainer = document.querySelector('.genres-list');
+        // const genresMainContainer = document.querySelector('.genres-container')
+        // const genresContainer = document.querySelector('.genres-list');
         const  genreListItem = document.createElement('li');
         const  genreTitleContainer  = document.createElement('h3')
         const  genreTitle  =  document.createTextNode(category.name)
@@ -96,4 +96,3 @@ async function categoriesSection() {
         })  
     })
 }
-categoriesSection()

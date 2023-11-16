@@ -3,8 +3,18 @@
     flex-direction: column;
     width: 100vw;
     gap: 30px;
+    padding: 10px;
+    margin-block-end: 32px;
 }
-.trends-section h2 {
+.section-title {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+}
+.section-title h2 {
+    margin-block-start: 32px;
     align-self: center;
     text-align: center;
     border-radius: 14px;
@@ -17,7 +27,7 @@
     width: 100%;
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 178px));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 168px));
     gap: 15px;
 }
 .img-container {
