@@ -21,6 +21,9 @@ viewMoreTrends.addEventListener('click', ()=>  {
 backButton.addEventListener('click', ()=> {
     location.hash = 'home'
 })
+backFromCategoryView.addEventListener('click', ()=> {
+    location.hash = 'home'
+})
 
 function homePage() {
     getTrendingMoviesPreview()
@@ -29,6 +32,7 @@ function homePage() {
     sliderContainer.classList.remove('inactive')
     genreSection.classList.remove('inactive')
     trendSection.classList.add('inactive')
+    categoryView.classList.add('inactive')
 
 }
 function trendsPage() {
@@ -38,6 +42,7 @@ function trendsPage() {
     getTrendingMovies()
     trendSection.classList.remove('inactive')
     genreSection.classList.add('inactive')
+    categoryView.classList.add('inactive')
 
 }
 function searchPage() {
@@ -50,5 +55,13 @@ function movieDetailsPage() {
 }
 function categoriesPage() {
     console.log('Categories');
+    sliderContainer.classList.add('inactive')
+    genreSection.classList.add('inactive')
+    trendSection.classList.add('inactive')
+    categoryView.classList.remove('inactive')
     getCategoriesPreview()
+    const fullId = location.hash.split('-', (location.hash).length) // [#category=12, category.name]
+    const categoryId = fullId[0].split('=', (fullId[0].length));  //  [#category=, 12]
+    //console.log(categoryId[1]);  //[12]
+    getCategoryView(categoryId[1])
 }

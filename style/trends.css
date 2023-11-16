@@ -3,7 +3,9 @@
     flex-direction: column;
     width: 100vw;
     gap: 30px;
-    padding: 10px;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+    padding-block-end: 20px;
     margin-block-end: 32px;
 }
 .section-title {
