@@ -14,6 +14,8 @@ function navigator() {
         homePage();
     }
 
+    // scroll-top
+    window.scrollTo(0, 0)
 }
 viewMoreTrends.addEventListener('click', ()=>  {
     location.hash = '#trends';

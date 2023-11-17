@@ -12,6 +12,7 @@
   },
   "author": "rubenbot07",
   "license": "MIT",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Rubenbot07/Movie-s-world/issues"
   },

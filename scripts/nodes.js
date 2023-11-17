@@ -1,4 +1,3 @@
-console.log('hola nodes');
 const backFromCategoryView = document.querySelector('.back-category-view-button')
 const viewMoreTrends = document.querySelector('.view-more-trends')
 const backButton = document.querySelector('.back-arrow')

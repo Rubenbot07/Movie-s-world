@@ -39,6 +39,23 @@ body {
     margin-block-end: 32px;
     text-decoration: none;
 }
+.section-title {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+}
+.section-title h2 {
+    margin-block-start: 32px;
+    align-self: center;
+    text-align: center;
+    border-radius: 14px;
+    width: 40vw;
+    color: var(--dark-color);
+    background-color: var(--main-color);
+    font-size: 1.4em;
+}
 
 .view-more-trends {
     display: flex;
