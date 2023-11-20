@@ -2,6 +2,7 @@
 //NAVBAR
 const burguerMenu = document.querySelector('.bars__menu')
 const categorieslist = document.querySelector('.categories-title')
+const searchButton = document.querySelector('.search-button')
 const searchIcon = document.querySelector('.search-icon')
 const logo = document.querySelector('.logo')
 //BURGUER MENU
@@ -19,7 +20,6 @@ const listElement = document.querySelectorAll('.list-item')
 const trendingPreviewMoviesContainer = document.querySelector('.swiper-wrapper') 
 const trendingMovieContainer = document.querySelector('.trending-movies-container')
 const categoryViewContainer  = document.querySelector('.category-view-movies-container');
-
 const backFromCategoryView = document.querySelector('.back-category-view-button')
 const viewMoreTrends = document.querySelector('.view-more-trends')
 const backButton = document.querySelector('.back-arrow')

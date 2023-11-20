@@ -1,3 +1,4 @@
+
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
@@ -9,6 +10,21 @@ const api = axios.create({
     }
 });
 //Util
+//search on mobile
+window.addEventListener('keydown', (e)=>{
+    console.log(e.key);
+    if(e.key === 'Enter') {
+        location.hash = `#search=${inputBar.value}`
+        searchPage()
+    }
+})
+function searchSectionReload() {
+    console.log('sipi');
+    if(location.hash.startsWith('#search=')){
+        console.log('si');
+        location.hash  = 'home'
+    }
+}
 function createMovie(movies, container) {
     container.innerHTML = ''
     movies.forEach(movie => {
@@ -115,5 +131,19 @@ async function getCategoryView(id){
     const { data } = await api('discover/movie?with_genres=' + id)
     const movies = data.results;
     console.log(movies);
+    createMovie(movies, categoryViewContainer)
+}
+
+async function getMoviesBysearch(query) {
+    const { data } = await api('search/movie', {
+        params: {
+            query,
+        }
+    })
+    const movies = data.results;
+    console.log(movies);
+    const title = document.querySelector('.category-view-title')
+    title.innerHTML = inputBar.value
+    
     createMovie(movies, categoryViewContainer)
 }

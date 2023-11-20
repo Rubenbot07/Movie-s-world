@@ -22,6 +22,7 @@ searchIcon.addEventListener('click', ()=> {
     logo.classList.toggle('inactive')
     searchIcon.classList.toggle('search-icon')
     searchIcon.classList.toggle('active-search-icon')
+    searchButton.classList.toggle('inactive')
     
 })
 

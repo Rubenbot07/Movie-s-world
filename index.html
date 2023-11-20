@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="searchSectionReload()">
     <header>
         <nav>
             <div class="bars__menu">
@@ -25,6 +25,9 @@
                 <h1>Movie's World</h1>
             </div>
             <div class="search">
+                <div class="search-button inactive">
+                    <img src="./icons/magnifying-glass.svg" alt="">
+                </div>
                 <input class="input-bar" type="search" placeholder="Search movies">
                 <img class="search-icon" src="./icons/magnifying-glass.svg" alt="">
             </div>

@@ -1,3 +1,11 @@
+// window.addEventListener('keydown', (e)=>{
+//     console.log(e.key);
+//     if(e.key === 'Enter') {
+//         location.hash = `#search=${inputBar.value}`
+//         searchPage()
+//     }
+// })
+    
 window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
 console.log('hola navigation');
@@ -17,16 +25,19 @@ function navigator() {
     // scroll-top
     window.scrollTo(0, 0)
 }
+
 viewMoreTrends.addEventListener('click', ()=>  {
     location.hash = '#trends';
 })
 backButton.addEventListener('click', ()=> {
-    location.hash = 'home'
+    location.hash = window.history.back();
 })
 backFromCategoryView.addEventListener('click', ()=> {
-    location.hash = 'home'
+    location.hash = window.history.back();
 })
-
+searchButton.addEventListener('click', ()=> {
+    location.hash = `#search=${inputBar.value.trim()}`
+})
 function homePage() {
     getTrendingMoviesPreview()
     getCategoriesPreview()
@@ -48,8 +59,14 @@ function trendsPage() {
 
 }
 function searchPage() {
-    console.log('Search');
+    sliderContainer.classList.add('inactive')
+    genreSection.classList.add('inactive')
+    trendSection.classList.add('inactive')
+    categoryView.classList.remove('inactive')
+    const query = decodeURI(location.hash.split("=")[1]);
+    //decodeURI Sustituye a cada secuencia de escape codificado en URI con el carácter que representa.
     getCategoriesPreview()
+    getMoviesBysearch(query)
 }
 function movieDetailsPage() {
     console.log('Movie');

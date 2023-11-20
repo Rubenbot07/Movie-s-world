@@ -138,6 +138,7 @@ nav .search{
     border-radius: 12px;
     z-index: 1;
     padding-inline-start: 10px;
+    padding-inline-end: 8px;
     outline: none;
 }
 .search-icon {
@@ -148,4 +149,15 @@ nav .search{
     width: 20px;
     height: 100%;
     content: url(../icons/x-symbol.svg);
+}
+.search-button {
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    right: 55px;
+    padding-block-end: 6px;
+    z-index: 2;
+}
+.search-button img {
+    width: 20px;
 }
