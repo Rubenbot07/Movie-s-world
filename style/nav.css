@@ -108,6 +108,7 @@ nav {
     text-align: center;
 }
 nav .search{
+    background-color: var(--main-color);
     display: flex;
     align-items: center;
     position: absolute;
@@ -139,7 +140,12 @@ nav .search{
     padding-inline-start: 10px;
     outline: none;
 }
-.search img {
+.search-icon {
     width: 20px;
     height: 100%;
+}
+.active-search-icon {
+    width: 20px;
+    height: 100%;
+    content: url(../icons/x-symbol.svg);
 }

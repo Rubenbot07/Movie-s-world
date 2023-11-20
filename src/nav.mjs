@@ -20,6 +20,9 @@ searchIcon.addEventListener('click', ()=> {
     const inputBar = document.querySelector('.input-bar')
     inputBar.classList.toggle('active-search-input')
     logo.classList.toggle('inactive')
+    searchIcon.classList.toggle('search-icon')
+    searchIcon.classList.toggle('active-search-icon')
+    
 })
 
 categorieslist.addEventListener('click', ()=> {
