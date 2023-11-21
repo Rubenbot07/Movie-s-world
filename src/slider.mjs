@@ -26,7 +26,7 @@ const swiper = new Swiper('.swiper', {
       },
      // when window width is >= 640px
       640: {
-        slidesPerView: 4,
+        slidesPerView: 3,
         spaceBetween: 40
       }
     },
@@ -35,7 +35,6 @@ const swiper = new Swiper('.swiper', {
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
-    hideOnClick : true
   },
 
   // And if we need scrollbar

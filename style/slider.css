@@ -3,6 +3,7 @@
     width: 100vw;
     position: relative;
     z-index: 0;
+    margin: 0 auto;
 }
 .movies-container {
     display: flex;
@@ -11,6 +12,7 @@
 }
 .swiper {
     width: 100%;
+    max-width: 500px;
 }
 .swiper-slide {
     background-position: center;

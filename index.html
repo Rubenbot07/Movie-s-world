@@ -75,7 +75,7 @@
 
     <section class="trends-section inactive">
         <div class="section-title">
-            <img class="back-arrow" src="./icons/arrow-right-40.svg" alt="">
+            <img class="back-arrow" src="./icons/back-arrow.svg" alt="back arrow">
             <h2>Trending</h2>
         </div>
         <div class="trending-movies-container">
@@ -99,12 +99,12 @@
                 </li> -->
             </ul>
         </div>
-        <button class="more-button"><img class="down-arrow" src="./icons/down-arrow.svg" alt=""></button>
+        <button class="more-button"><img class="down-arrow" src="./icons/down-arrow.svg" alt="view more arrow"></button>
     </section>
 
     <section class="category-view">
         <div class="section-title">
-            <img class="back-arrow back-category-view-button" src="./icons/arrow-right-40.svg" alt="">
+            <img class="back-arrow" src="./icons/back-arrow.svg" alt="back arrow">
             <h2 class="category-view-title"></h2>
         </div>
         <div class="category-view-movies-container">
@@ -113,6 +113,35 @@
                 <span class="category-view-movie-title"></span>
             </div>
         </div>
+    </section>
+
+    <section class="movie-details inactive">
+        <div class="movie-details-img-container">
+            <div class="arrow-container">
+                <img class="back-arrow" src="./icons/back-arrow.svg" alt="back arrow">
+            </div>
+            <img class="movie-details-img" src="" alt="">
+        </div>
+        <div class="movie-details-info-container">
+            <div class="header-movie-details-info">
+                <h2 class="movie-details-title"></h2>
+                <span class="movie-score"></span>
+            </div>
+            <div class="movie-description-container">
+                <p class="movie-description"></p>
+            </div>
+            <div class="aditional-info">
+                <div class="language-container">
+                    <img src="./icons/point.svg" alt="">
+                    <span class="language"></span>
+                </div>
+                <div class="date-container">
+                    <img src="./icons/point.svg" alt="">
+                    <span class="date"></span>
+                </div>
+            </div>
+        </div>
+
     </section>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

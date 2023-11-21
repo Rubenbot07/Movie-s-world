@@ -1,4 +1,3 @@
-
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
@@ -12,19 +11,22 @@ const api = axios.create({
 //Util
 //search on mobile
 window.addEventListener('keydown', (e)=>{
-    console.log(e.key);
     if(e.key === 'Enter') {
-        location.hash = `#search=${inputBar.value}`
-        searchPage()
+        if(inputBar.value === ''){
+            location.hash = location.hash
+        } else {
+            location.hash = `#search=${inputBar.value}`
+        }
     }
 })
+
+// Reload
 function searchSectionReload() {
-    console.log('sipi');
-    if(location.hash.startsWith('#search=')){
-        console.log('si');
+    if(!location.hash.startsWith('#home')){
         location.hash  = 'home'
     }
 }
+// craeate category view and trending view
 function createMovie(movies, container) {
     container.innerHTML = ''
     movies.forEach(movie => {
@@ -35,10 +37,17 @@ function createMovie(movies, container) {
         const movieImg = document.createElement('img');
         categoryViewImgContainer.appendChild(movieImg);
         movieImg.setAttribute('src','https://image.tmdb.org/t/p/w300' + movie.poster_path)
+        movieImg.setAttribute('alt', movie.title);
         const movieTitle = document.createElement('span')
         const movieTitleText = document.createTextNode(movie.title)
         movieTitle.appendChild(movieTitleText)
         categoryViewImgContainer.appendChild(movieTitle)
+
+        categoryViewImgContainer.addEventListener('click', ()=> {
+            console.log(movie.id, movie.title);
+            location.hash = '#movie='  + movie.id
+            
+        })
     })
 }
 //Trending movies
@@ -60,9 +69,12 @@ async function getTrendingMoviesPreview() {
         const movieImg = document.createElement('img')
         movieImg.setAttribute('alt', movie.title);
         movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300'+ movie.poster_path,)
-        
         movieContainer.appendChild(movieImg);
         trendingPreviewMoviesContainer.appendChild(movieContainer)
+        movieContainer.addEventListener('click', ()=> {
+            console.log(movie.id, movie.title);
+            location.hash = '#movie=' + movie.id;
+        })
     })
 }
 async function getTrendingMovies() {
@@ -111,6 +123,7 @@ async function categoriesSection() {
         const icon = document.createElement('img')
         icon.classList.add('clapperboard')
         icon.setAttribute('src', '/icons/clapper-clapperboard-svgrepo-com.svg')
+        icon.setAttribute('alt', 'clapperboard')
         genreListItem.appendChild(icon);
         genreTitleContainer.appendChild(genreTitle)
         genreListItem.appendChild(genreTitleContainer)
@@ -143,7 +156,19 @@ async function getMoviesBysearch(query) {
     const movies = data.results;
     console.log(movies);
     const title = document.querySelector('.category-view-title')
+    title.innerHTML  = ''
     title.innerHTML = inputBar.value
     
     createMovie(movies, categoryViewContainer)
+}
+async function getMovieDetails(movieId) {
+    const { data: movie } = await api('movie/' + movieId)
+    movieDetailsImg.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + movie.poster_path)
+    movieDetailsImg.setAttribute('alt', movie.title);
+    movieDetailstitle.textContent = movie.title
+    movieScore.textContent = (movie.vote_average.toFixed(1)) + '⭐';
+    movieDetailsDescription.innerText =  movie.overview;
+    lang.innerText = `Original language: ${(movie.original_language).toUpperCase()}`
+    date.innerText = `Release date: ${movie.release_date}`
+
 }
