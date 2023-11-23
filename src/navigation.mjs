@@ -37,6 +37,7 @@ viewMoreTrends.addEventListener('click', ()=>  {
 backButton.forEach(button => {
     button.addEventListener('click', ()=> {
         location.hash = window.history.back();
+        trailer.innerHTML = '';
     })
 })
 
@@ -84,6 +85,7 @@ function movieDetailsPage() {
     genreSection.classList.add('inactive')
     categoryView.classList.add('inactive')
     movieDetailsSection.classList.remove('inactive')
+    relatedMoviesSection.classList.remove('inactive')
     const movieId = location.hash.split('=')[1];
     console.log(movieId);
     getMovieDetails(movieId);

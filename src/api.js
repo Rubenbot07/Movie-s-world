@@ -101,14 +101,9 @@ async function getCategoriesPreview() {
     })
 
 }
-
-async function categoriesSection() {
-    const { data } = await api('genre/movie/list');
-    const categories = data.genres;
-    genresContainer.innerHTML = ''
+function createCategories(categories, container){
+    container.innerHTML = ''
     categories.forEach(category => {
-        // const genresMainContainer = document.querySelector('.genres-container')
-        // const genresContainer = document.querySelector('.genres-list');
         const  genreListItem = document.createElement('li');
         const  genreTitleContainer  = document.createElement('h3')
         const  genreTitle  =  document.createTextNode(category.name)
@@ -118,7 +113,7 @@ async function categoriesSection() {
             categoryViewTitle.innerHTML = category.name
             location.hash = (`#category=${category.id}-${category.name}`) 
         })
-        genresContainer.appendChild(genreListItem)
+        container.appendChild(genreListItem)
         
         const icon = document.createElement('img')
         icon.classList.add('clapperboard')
@@ -127,8 +122,37 @@ async function categoriesSection() {
         genreListItem.appendChild(icon);
         genreTitleContainer.appendChild(genreTitle)
         genreListItem.appendChild(genreTitleContainer)
-          
     })
+}
+
+async function categoriesSection() {
+    const { data } = await api('genre/movie/list');
+    const categories = data.genres;
+    createCategories(categories, genresContainer)
+    // genresContainer.innerHTML = ''
+    // categories.forEach(category => {
+    //     // const genresMainContainer = document.querySelector('.genres-container')
+    //     // const genresContainer = document.querySelector('.genres-list');
+    //     const  genreListItem = document.createElement('li');
+    //     const  genreTitleContainer  = document.createElement('h3')
+    //     const  genreTitle  =  document.createTextNode(category.name)
+    //     genreListItem.classList.add('genres-list-item');
+    //     genreListItem.addEventListener('click', ()=> {
+    //         const categoryViewTitle = document.querySelector('.category-view-title')
+    //         categoryViewTitle.innerHTML = category.name
+    //         location.hash = (`#category=${category.id}-${category.name}`) 
+    //     })
+    //     genresContainer.appendChild(genreListItem)
+        
+    //     const icon = document.createElement('img')
+    //     icon.classList.add('clapperboard')
+    //     icon.setAttribute('src', '/icons/clapper-clapperboard-svgrepo-com.svg')
+    //     icon.setAttribute('alt', 'clapperboard')
+    //     genreListItem.appendChild(icon);
+    //     genreTitleContainer.appendChild(genreTitle)
+    //     genreListItem.appendChild(genreTitleContainer)
+          
+    // })
 }
 
 // View more button
@@ -163,6 +187,8 @@ async function getMoviesBysearch(query) {
 }
 async function getMovieDetails(movieId) {
     const { data: movie } = await api('movie/' + movieId)
+    console.log(movie);
+    movieDetailsImg.innerHTML = ''
     movieDetailsImg.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + movie.poster_path)
     movieDetailsImg.setAttribute('alt', movie.title);
     movieDetailstitle.textContent = movie.title
@@ -170,5 +196,26 @@ async function getMovieDetails(movieId) {
     movieDetailsDescription.innerText =  movie.overview;
     lang.innerText = `Original language: ${(movie.original_language).toUpperCase()}`
     date.innerText = `Release date: ${movie.release_date}`
+    runTime.innerText = `Runtime: ${movie.runtime} min`
 
+    createCategories(movie.genres, movieGenres)
+    getRelatedMovies(movieId)
+    getTrailer(movieId)
+}
+
+async function getRelatedMovies(id) {
+    const { data } = await api(`movie/${id}/similar`)
+    const relatedMovies = data.results
+    const limit = relatedMovies.slice(0, 6)
+    console.log(limit);
+
+    createMovie(limit, relatedMoviesContainer);
+}
+
+async function getTrailer(id) {
+    const { data } = await api(`movie/${id}/videos`)
+    trailer.innerHTML = ''
+    const trailerVideo = data.results
+    const teaser = trailerVideo[(trailerVideo.length - 1)]
+    trailer.innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${teaser.key}?si=A5LZaUd_qmZofKdR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
 }
