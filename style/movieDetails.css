@@ -1,12 +1,13 @@
 .movie-details {
     display: flex;
+    margin: 0 auto;
     flex-direction: column;
     align-items: center;
     width: 100vw;
+    max-width: 600px;
     height: auto;
     color: rgb(237, 237, 237);
 }
-
 
 .movie-details-img-container  .arrow-container{
    display: flex;
@@ -17,6 +18,7 @@
    padding: 10px;
    top: 50px;
    width: 100vw;
+   max-width: 450px;
    background: linear-gradient(rgba(13, 13, 13, 0.988), rgba(48, 48, 48, 0.01));
 }
 .movie-details-img-container .back-arrow{
@@ -34,6 +36,7 @@
     flex-direction: column;
     gap: 20px;
     width: 96vw;
+    max-width: 500px;
     position: relative;
     top: -32px;
     text-align: start;
@@ -81,6 +84,11 @@
     padding: 6px;
     height: fit-content;
 }
+.related-movies h3 {
+    text-align: center;
+    margin-block-end: 16px;
+    color: var(--main-color);
+}
 .related-movies-container {
     width: 100vw;
     display: grid;
@@ -91,10 +99,14 @@
 }
 .trailer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
     width: 100vw;
+    max-width: 500px;
     margin-block-start: 24px;
     margin-block-end: 24px;
+    color: var(--main-color);
 }
 .trailer iframe {
     width: 90%;

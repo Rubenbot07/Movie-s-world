@@ -11,7 +11,7 @@
     padding-block-end: 15px;
 }
 .swiper {
-    width: 100%;
+    width: 100vw;
     max-width: 500px;
 }
 .swiper-slide {
