@@ -45,6 +45,10 @@ backButton.forEach(button => {
 searchButton.addEventListener('click', ()=> {
     location.hash = `#search=${inputBar.value.trim()}`
 })
+
+logo.addEventListener('click', homePage)
+
+
 function homePage() {
     getTrendingMoviesPreview()
     getCategoriesPreview()
@@ -54,6 +58,7 @@ function homePage() {
     trendSection.classList.add('inactive')
     categoryView.classList.add('inactive')
     movieDetailsSection.classList.add('inactive')
+    categoryViewLoading.classList.add('inactive')
 
 }
 function trendsPage() {
@@ -97,6 +102,7 @@ function categoriesPage() {
     trendSection.classList.add('inactive')
     movieDetailsSection.classList.add('inactive')
     categoryView.classList.remove('inactive')
+    categoryViewLoading.classList.remove('inactive')
     getCategoriesPreview()
     const fullId = location.hash.split('-', (location.hash).length) // [#category=12, category.name]
     const categoryId = fullId[0].split('=', (fullId[0].length));  //  [#category=, 12]

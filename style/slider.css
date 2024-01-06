@@ -10,6 +10,23 @@
     height: 100%;
     padding-block-end: 15px;
 }
+.slider-loading {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    height: 241px;
+    padding-left: 24px;
+    padding-bottom: 16px;
+}
+.slider-loading-item {
+    display: inline-block;
+    width: 190px;
+    border-radius: 12px;
+    height: 300px;
+    margin-inline-end: 20px;
+    background-color: rgb(89, 89, 89);
+    animation: loading-skeleton infinite 1.5s;
+}
 .swiper {
     width: 100vw;
     max-width: 500px;

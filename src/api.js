@@ -59,7 +59,8 @@ async function getTrendingMoviesPreview() {
     const movies = data.results;
     const limit = movies.slice(0,9)
     console.log(movies);
-
+    const sliderLoading = document.querySelector('.slider-loading')
+    sliderLoading.style.display = 'none'
     limit.forEach(movie => {
         const trendingPreviewMoviesContainer = document.querySelector('.swiper-wrapper') 
 
@@ -168,7 +169,9 @@ async function getCategoryView(id){
     const { data } = await api('discover/movie?with_genres=' + id)
     const movies = data.results;
     console.log(movies);
+    categoryViewContainer.innerHTML = ''
     createMovie(movies, categoryViewContainer)
+    categoryViewLoading.style.display = 'none'
 }
 
 async function getMoviesBysearch(query) {
@@ -182,7 +185,7 @@ async function getMoviesBysearch(query) {
     const title = document.querySelector('.category-view-title')
     title.innerHTML  = ''
     title.innerHTML = inputBar.value
-    
+    console.log(`category view  ${categoryViewContainer}`);
     createMovie(movies, categoryViewContainer)
 }
 async function getMovieDetails(movieId) {
@@ -197,7 +200,8 @@ async function getMovieDetails(movieId) {
     lang.innerText = `Original language: ${(movie.original_language).toUpperCase()}`
     date.innerText = `Release date: ${movie.release_date}`
     runTime.innerText = `Runtime: ${movie.runtime} min`
-
+    movieDetailsImgLoading.style.display = 'none'
+    movieInfoLoading.style.display = 'none'
     createCategories(movie.genres, movieGenres)
     getRelatedMovies(movieId)
     getTrailer(movieId)
@@ -208,7 +212,7 @@ async function getRelatedMovies(id) {
     const relatedMovies = data.results
     const limit = relatedMovies.slice(0, 6)
     console.log(limit);
-
+    relatedMoviesContainerLoading.style.display = 'none';
     createMovie(limit, relatedMoviesContainer);
 }
 
@@ -218,4 +222,5 @@ async function getTrailer(id) {
     const trailerVideo = data.results
     const teaser = trailerVideo[(trailerVideo.length - 1)]
     trailer.innerHTML = `<h3>Watch trailer</h3> <iframe width="560" height="315" src="https://www.youtube.com/embed/${teaser.key}?si=A5LZaUd_qmZofKdR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+    trailerLoading.style.display = 'none'
 }

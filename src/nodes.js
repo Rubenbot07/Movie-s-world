@@ -18,6 +18,8 @@ const list = document.querySelector('.categories-list');
 const listElement = document.querySelectorAll('.list-item')
 
 // CATEGORY VIEW
+const categoryViewSection = document.querySelector('.category-view')
+const categoryViewLoading = document.querySelector('.category-view-loading')
 const trendingPreviewMoviesContainer = document.querySelector('.swiper-wrapper') 
 const trendingMovieContainer = document.querySelector('.trending-movies-container')
 const categoryViewContainer  = document.querySelector('.category-view-movies-container');
@@ -33,6 +35,7 @@ const categoryView = document.querySelector('.category-view')
 
 //MOVIE DETAILS
 const movieDetailsContainer = document.querySelector('.movie-details-img-container');
+const movieDetailsImgLoading = document.querySelector('.movie-image-loading')
 const movieDetailsImg = document.querySelector('.movie-details-img')
 const movieDetailstitle = document.querySelector('.movie-details-title')
 const movieScore = document.querySelector('.movie-score')
@@ -41,6 +44,9 @@ const lang = document.querySelector('.language')
 const date = document.querySelector('.date')
 const runTime = document.querySelector('.runtime')
 const movieGenres = document.querySelector('.movie-genres')
+const movieInfoLoading = document.querySelector('.movie-details-info-container-loading')
 const relatedMoviesSection = document.querySelector('.related-movies')
 const relatedMoviesContainer = document.querySelector('.related-movies-container')
+const relatedMoviesContainerLoading = document.querySelector('.related-movies-loading-container')
 const trailer = document.querySelector('.trailer')
+const trailerLoading = document.querySelector('.trailer-loading')

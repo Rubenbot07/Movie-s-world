@@ -7,8 +7,22 @@
     padding-inline-end: 10px;
     padding-block-end: 20px;
 }
+.category-view-loading {
+    width: 95vw;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 168px));
+    gap: 15px;
+}
+.category-view-movies-image-container-loading {
+    width: 168px;
+    height: 252px;
+    background-color: gray;
+    border-radius: 12px;
+    animation: loading-skeleton infinite 1.5s;
+}
 .category-view-movies-container {
-    width: 100vw;
+    width: 95vw;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(120px, 168px));
