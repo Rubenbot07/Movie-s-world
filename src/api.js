@@ -40,18 +40,23 @@ function searchSectionReload() {
 }
 // craeate category view and trending view
 function createMovie(movies, container) {
-    container.innerHTML = ''
+     container.innerHTML = ''
     movies.forEach(movie => {
         // const categoryViewContainer  = document.querySelector('.category-view-movies-container');
         const categoryViewImgContainer = document.createElement('div')
         categoryViewImgContainer.classList.add('category-view-movies-image-container');
         container.appendChild(categoryViewImgContainer);
+        
         const movieImg = document.createElement('img');
         categoryViewImgContainer.appendChild(movieImg);
         movieImg.setAttribute('data-img','https://image.tmdb.org/t/p/w300' + movie.poster_path)
         movieImg.setAttribute('alt', movie.title);
-
         lazyLoader.observe(movieImg)
+        movieImg.addEventListener('error', () => {
+            movieImg.setAttribute('src', 'https://i.postimg.cc/dQ2r7BpF/error-image-photo-icon.png')
+        })
+        
+        
         const movieTitle = document.createElement('span')
         const movieTitleText = document.createTextNode(movie.title)
         movieTitle.appendChild(movieTitleText)
