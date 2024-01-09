@@ -9,6 +9,18 @@ const api = axios.create({
     }
 });
 //Util
+const lazyLoader = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        // console.log(entry.target.setAttribute);
+        if (entry.isIntersecting) {     
+            const url = entry.target.getAttribute('data-img');
+            entry.target.setAttribute('src', url)
+        }
+    })
+})
+
+
+
 //search on mobile
 window.addEventListener('keydown', (e)=>{
     if(e.key === 'Enter') {
@@ -36,8 +48,10 @@ function createMovie(movies, container) {
         container.appendChild(categoryViewImgContainer);
         const movieImg = document.createElement('img');
         categoryViewImgContainer.appendChild(movieImg);
-        movieImg.setAttribute('src','https://image.tmdb.org/t/p/w300' + movie.poster_path)
+        movieImg.setAttribute('data-img','https://image.tmdb.org/t/p/w300' + movie.poster_path)
         movieImg.setAttribute('alt', movie.title);
+
+        lazyLoader.observe(movieImg)
         const movieTitle = document.createElement('span')
         const movieTitleText = document.createTextNode(movie.title)
         movieTitle.appendChild(movieTitleText)
@@ -69,7 +83,9 @@ async function getTrendingMoviesPreview() {
         
         const movieImg = document.createElement('img')
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300'+ movie.poster_path,)
+        movieImg.setAttribute('data-img', 'https://image.tmdb.org/t/p/w300'+ movie.poster_path,)
+        lazyLoader.observe(movieImg)
+        
         movieContainer.appendChild(movieImg);
         trendingPreviewMoviesContainer.appendChild(movieContainer)
         movieContainer.addEventListener('click', ()=> {
@@ -224,3 +240,5 @@ async function getTrailer(id) {
     trailer.innerHTML = `<h3>Watch trailer</h3> <iframe width="560" height="315" src="https://www.youtube.com/embed/${teaser.key}?si=A5LZaUd_qmZofKdR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
     trailerLoading.style.display = 'none'
 }
+
+

@@ -119,7 +119,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 96vw;
     max-width: 500px;
     position: relative;
     top: -32px;
