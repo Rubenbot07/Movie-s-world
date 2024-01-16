@@ -83,6 +83,30 @@ body {
     border-radius: 100%;
     background-color: none;
 }
+.like-button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: var(--dark-color);
+    border-radius: 100%;
+    border: none;
+    margin: 4px;
+}
+.top-button {
+    position:fixed;
+    height: 50px;
+    width: 50px;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 100%;
+    border: none;
+    transition: all;
+    background-color: var(--main-color);
+    scroll-behavior: smooth;
+}
+.top-button img {
+    width: 100%;
+}
 /* Animations */
 @keyframes loading-skeleton {
     0%, 100% {

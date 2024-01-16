@@ -5,11 +5,34 @@
 //         searchPage()
 //     }
 // })
-    
+let infiniteScroll;
 window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
-console.log('hola navigation');
+window.addEventListener('scroll', infiniteScroll, false)
+
+topButton.addEventListener('click',()=> {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+})
+
+function backTopButton() {
+
+    if(document.documentElement.scrollTop < 400) {
+        topButton.classList.add('inactive')
+    } else {
+        topButton.classList.remove('inactive')
+    }
+}
 function navigator() {
+    console.log('navigator');
+    if(infiniteScroll) {
+        window.removeEventListener('scroll', infiniteScroll, {pasive : 
+            false})
+        infiniteScroll = undefined;
+    }
+
     if(location.hash.startsWith('#trends')) {
         trendsPage();
     } else if(location.hash.startsWith('#search=')) {
@@ -24,6 +47,10 @@ function navigator() {
 
     // scroll-top
     window.scrollTo(0, 0)
+    if (infiniteScroll) {
+        window.addEventListener('scroll', infiniteScroll, {pasive : 
+            false})
+    }
 }
 
 // View more
@@ -43,10 +70,16 @@ backButton.forEach(button => {
 
 // Search 
 searchButton.addEventListener('click', ()=> {
-    location.hash = `#search=${inputBar.value.trim()}`
+    if (inputBar.value.length > 0) {
+        location.hash = `#search=${inputBar.value.trim()}`
+    }
 })
 
-logo.addEventListener('click', homePage)
+logo.addEventListener('click', ()=> {
+    location.hash = '#home';
+    topButton.classList.add('inactive')
+    homePage()
+})
 
 
 function homePage() {
@@ -59,13 +92,21 @@ function homePage() {
     categoryView.classList.add('inactive')
     movieDetailsSection.classList.add('inactive')
     categoryViewLoading.classList.add('inactive')
+    window.removeEventListener('scroll', backTopButton, 
+    {
+        pasive : false
+    }
+    )
+    topButton.classList.add('inactive')
 
 }
 function trendsPage() {
+    window.addEventListener('scroll', backTopButton, false)
     console.log('Trends');
     getCategoriesPreview()
     sliderContainer.classList.add('inactive')
     getTrendingMovies()
+    infiniteScroll = getPaginatedTrendingMovies()
     trendSection.classList.remove('inactive')
     genreSection.classList.add('inactive')
     categoryView.classList.add('inactive')
@@ -73,6 +114,7 @@ function trendsPage() {
 
 }
 function searchPage() {
+    window.addEventListener('scroll', backTopButton, false)
     sliderContainer.classList.add('inactive')
     genreSection.classList.add('inactive')
     trendSection.classList.add('inactive')
@@ -82,8 +124,10 @@ function searchPage() {
     //decodeURI Sustituye a cada secuencia de escape codificado en URI con el carácter que representa.
     getCategoriesPreview()
     getMoviesBysearch(query)
+    infiniteScroll = getPaginatedBySearch(query)
 }
 function movieDetailsPage() {
+    window.addEventListener('scroll', backTopButton, false)
     console.log('Movie');
     sliderContainer.classList.add('inactive')
     trendSection.classList.add('inactive')
@@ -96,6 +140,7 @@ function movieDetailsPage() {
     getMovieDetails(movieId);
 }
 function categoriesPage() {
+    window.addEventListener('scroll', backTopButton, false)
     console.log('Categories');
     sliderContainer.classList.add('inactive')
     genreSection.classList.add('inactive')
@@ -108,4 +153,5 @@ function categoriesPage() {
     const categoryId = fullId[0].split('=', (fullId[0].length));  //  [#category=, 12]
     //console.log(categoryId[1]);  //[12]
     getCategoryView(categoryId[1])
-}
+    infiniteScroll = getPaginatedCaterorieView(categoryId[1])
+} 

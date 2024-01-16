@@ -13,6 +13,7 @@ burguerMenu.addEventListener('click', ()=> {
     line2.classList.toggle('activeline2__bars-menu')
     line3.classList.toggle('activeline3__bars-menu')
     menu.classList.toggle('active-menu')
+    searchIcon.classList.toggle('inactive')
     
 })
 

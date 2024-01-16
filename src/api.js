@@ -1,14 +1,16 @@
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
-      'Content-Type': 'application/json;charset=utf-8', 
+        'Content-Type': 'application/json;charset=utf-8', 
     },
     params: {
         'api_key' : API_KEY,
-
+        
     }
 });
 //Util
+let page = 1;
+let maxPage;
 const lazyLoader = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         // console.log(entry.target.setAttribute);
@@ -39,8 +41,12 @@ function searchSectionReload() {
     }
 }
 // craeate category view and trending view
-function createMovie(movies, container) {
-     container.innerHTML = ''
+function createMovie(movies, container, {clean = true} = {},) {
+    
+    if(clean) {
+        container.innerHTML = ''
+    }
+
     movies.forEach(movie => {
         // const categoryViewContainer  = document.querySelector('.category-view-movies-container');
         const categoryViewImgContainer = document.createElement('div')
@@ -59,9 +65,14 @@ function createMovie(movies, container) {
         
         const movieTitle = document.createElement('span')
         const movieTitleText = document.createTextNode(movie.title)
+        const likeButton = document.createElement('button')
+        const likeButtonIcon = document.createTextNode('💛')
+        likeButton.classList.add('like-button')
+        likeButton.appendChild(likeButtonIcon )
+
         movieTitle.appendChild(movieTitleText)
         categoryViewImgContainer.appendChild(movieTitle)
-
+        categoryViewImgContainer.appendChild(likeButton)
         categoryViewImgContainer.addEventListener('click', ()=> {
             console.log(movie.id, movie.title);
             location.hash = '#movie='  + movie.id
@@ -102,8 +113,33 @@ async function getTrendingMoviesPreview() {
 async function getTrendingMovies() {
     const { data } = await api('trending/movie/day')
     const movies = data.results;
-    console.log(movies);
-    createMovie(movies, trendingMovieContainer)
+    maxPage = data.total_pages;
+    console.log(maxPage);
+    createMovie(movies, trendingMovieContainer, {clean: true})
+
+}
+
+function getPaginatedTrendingMovies() {
+    return async function () {
+        const {
+            scrollTop, scrollHeight, clientHeight
+        } = document.documentElement    
+        const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 80)
+        // el codigo anterior es igual que usar 
+        // document.documentElement.scrollTop etc 
+        const pageIsNotMax = page < maxPage;
+        
+        if(scrollIsBottom && pageIsNotMax) {
+            const { data } = await api('trending/movie/day', {
+                params : {
+                    page : ++page
+                }
+            })
+            const movies = data.results;
+            createMovie(movies, trendingMovieContainer,{clean: false})
+        }
+    }    
+   
 }
 
 //Categories
@@ -176,25 +212,48 @@ async function categoriesSection() {
           
     // })
 }
-
 // View more button
 const moreButton = document.querySelector('.more-button')
-    moreButton.addEventListener('click', ()=> {
+moreButton.addEventListener('click', ()=> {
     genresMainContainer.classList.toggle('active-genres-main-container')
     moreButton.classList.toggle('active-more-button')
 })
 
 //category view
+
 async function getCategoryView(id){
-    console.log('discover/movie?with_genres=' + id);
     const { data } = await api('discover/movie?with_genres=' + id)
     const movies = data.results;
     console.log(movies);
     categoryViewContainer.innerHTML = ''
-    createMovie(movies, categoryViewContainer)
+    maxPage = data.total_pages;
+    console.log(maxPage);
+    createMovie(movies, categoryViewContainer,{clean: true})
     categoryViewLoading.style.display = 'none'
 }
-
+function getPaginatedCaterorieView(id) {
+    return async function () {
+        const {
+            scrollTop, scrollHeight, clientHeight
+        } = document.documentElement    
+        const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 80 )
+        // el codigo anterior es igual que usar 
+        // document.documentElement.scrollTop etc 
+        const pageIsNotMax = page < maxPage;
+        
+        if(scrollIsBottom && pageIsNotMax) {
+            const { data } = await api('discover/movie?with_genres='+ id, {
+                params : {
+                    page : ++page
+                }
+            })
+            const movies = data.results;
+            createMovie(movies, categoryViewContainer,{clean: false})
+        }
+    }    
+        
+   
+}
 async function getMoviesBysearch(query) {
     const { data } = await api('search/movie', {
         params: {
@@ -206,8 +265,31 @@ async function getMoviesBysearch(query) {
     const title = document.querySelector('.category-view-title')
     title.innerHTML  = ''
     title.innerHTML = inputBar.value
-    console.log(`category view  ${categoryViewContainer}`);
+    maxPage = data.total_pages;
     createMovie(movies, categoryViewContainer)
+}
+function getPaginatedBySearch() {
+    return async function () {
+        const {
+            scrollTop, scrollHeight, clientHeight
+        } = document.documentElement    
+        const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 80 )
+        // el codigo anterior es igual que usar 
+        // document.documentElement.scrollTop etc 
+        const pageIsNotMax = page < maxPage;
+    
+        if(scrollIsBottom && pageIsNotMax) {
+            const { data } = await api('search/movie', {
+                params : {
+                    query,
+                    page : ++page
+                }
+            })
+            const movies = data.results;
+            createMovie(movies, categoryViewContainer,{clean: false})
+        }
+    }    
+   
 }
 async function getMovieDetails(movieId) {
     const { data: movie } = await api('movie/' + movieId)

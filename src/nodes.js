@@ -32,6 +32,7 @@ const categoriesContainer = document.querySelector('.categories-list');
 const genresMainContainer = document.querySelector('.genres-container')
 const genresContainer = document.querySelector('.genres-list');
 const categoryView = document.querySelector('.category-view')
+const topButton = document.querySelector('.top-button')
 
 //MOVIE DETAILS
 const movieDetailsContainer = document.querySelector('.movie-details-img-container');
