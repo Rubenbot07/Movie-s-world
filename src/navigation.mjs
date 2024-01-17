@@ -135,6 +135,7 @@ function movieDetailsPage() {
     categoryView.classList.add('inactive')
     movieDetailsSection.classList.remove('inactive')
     relatedMoviesSection.classList.remove('inactive')
+    likeSection.classList.add('inactive')
     const movieId = location.hash.split('=')[1];
     console.log(movieId);
     getMovieDetails(movieId);

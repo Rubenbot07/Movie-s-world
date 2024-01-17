@@ -33,7 +33,7 @@
     flex-direction: column;
     color: var(--main-color);
 }
-.category-view-movies-image-container  img, .liked-movies-image-container img {
+.category-view-movies-image-container  .min-img, .liked-movies-image-container .min-img {
     border-radius: 12px;
     min-height: 252px;
 }

@@ -51,3 +51,6 @@ const relatedMoviesContainer = document.querySelector('.related-movies-container
 const relatedMoviesContainerLoading = document.querySelector('.related-movies-loading-container')
 const trailer = document.querySelector('.trailer')
 const trailerLoading = document.querySelector('.trailer-loading')
+
+//LIKE SECTION
+const likeSection = document.querySelector('.liked-container')

@@ -92,6 +92,16 @@ body {
     border: none;
     margin: 4px;
 }
+.like-button img {
+    width: 50%;
+    height: 50%;
+}
+.like-icon-img {
+    filter: grayscale(1);
+}
+.liked {
+    border: 2px solid var(--main-color);
+}
 .top-button {
     position:fixed;
     height: 50px;

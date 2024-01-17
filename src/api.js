@@ -57,6 +57,7 @@ function createMovie(movies, container, {clean = true} = {},) {
         categoryViewImgContainer.appendChild(movieImg);
         movieImg.setAttribute('data-img','https://image.tmdb.org/t/p/w300' + movie.poster_path)
         movieImg.setAttribute('alt', movie.title);
+        movieImg.classList.add('min-img')
         lazyLoader.observe(movieImg)
         movieImg.addEventListener('error', () => {
             movieImg.setAttribute('src', 'https://i.postimg.cc/dQ2r7BpF/error-image-photo-icon.png')
@@ -66,7 +67,9 @@ function createMovie(movies, container, {clean = true} = {},) {
         const movieTitle = document.createElement('span')
         const movieTitleText = document.createTextNode(movie.title)
         const likeButton = document.createElement('button')
-        const likeButtonIcon = document.createTextNode('💛')
+        const likeButtonIcon = document.createElement('img')
+        likeButtonIcon.setAttribute('src', '/icons/like-icon.svg')
+        likeButtonIcon.classList.add('like-icon-img')
         likeButton.classList.add('like-button')
         likeButton.appendChild(likeButtonIcon )
 
@@ -77,6 +80,11 @@ function createMovie(movies, container, {clean = true} = {},) {
             console.log(movie.id, movie.title);
             location.hash = '#movie='  + movie.id
             
+        })
+        likeButton.addEventListener('click', (event)=> {
+            event.stopPropagation();
+            likeButton.classList.toggle('liked')
+            likeButtonIcon.classList.toggle('like-icon-img')
         })
     })
 }
@@ -300,6 +308,13 @@ async function getMovieDetails(movieId) {
     movieDetailstitle.textContent = movie.title
     movieScore.textContent = (movie.vote_average.toFixed(1)) + '⭐';
     movieDetailsDescription.innerText =  movie.overview;
+    const likeButton = document.createElement('button')
+    const likeButtonIcon = document.createElement('img')
+    likeButtonIcon.setAttribute('src', '/icons/like-icon.svg')
+    likeButtonIcon.classList.add('like-icon-img')
+    likeButton.classList.add('like-button')
+    likeButton.appendChild(likeButtonIcon )
+    movieDetailsContainer.appendChild(likeButton)
     lang.innerText = `Original language: ${(movie.original_language).toUpperCase()}`
     date.innerText = `Release date: ${movie.release_date}`
     runTime.innerText = `Runtime: ${movie.runtime} min`
@@ -308,6 +323,11 @@ async function getMovieDetails(movieId) {
     createCategories(movie.genres, movieGenres)
     getRelatedMovies(movieId)
     getTrailer(movieId)
+
+    likeButton.addEventListener('click', ()=> {
+        likeButton.classList.toggle('liked')
+        likeButtonIcon.classList.toggle('like-icon-img')
+    })
 }
 
 async function getRelatedMovies(id) {

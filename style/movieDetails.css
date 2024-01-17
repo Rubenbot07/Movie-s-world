@@ -26,6 +26,12 @@
     left: 20px;
     top: 20px;
 }
+.movie-details-img-container .like-button {
+    width: 50px;
+    height: 50px;
+    right: 24px;
+    top: 64px;
+}
 .movie-details-img {
     width: 100%;
     max-width: 450px;
