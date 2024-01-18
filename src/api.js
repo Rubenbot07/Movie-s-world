@@ -1,3 +1,5 @@
+//Data
+
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
@@ -5,9 +7,31 @@ const api = axios.create({
     },
     params: {
         'api_key' : API_KEY,
-        
     }
 });
+
+function likedMoviesList(id) {
+    const item = JSON.parse(localStorage.getItem(`${id}`))
+    console.log(item);
+    let movies;
+    if(item) {
+        movies = item;
+    } else {
+        movies = {};
+    }
+    return movies
+}
+
+function likeMovie (movie) {
+    const likedMovies = likedMoviesList(movie.id);
+    if (likedMovies[movie.id]) {
+        localStorage.removeItem(movie.id)
+    } else {
+        likedMovies[movie.id] = movie
+        localStorage.setItem(`${movie.id}`, JSON.stringify(likedMovies))
+    }
+}
+
 //Util
 let page = 1;
 let maxPage;
@@ -61,6 +85,7 @@ function createMovie(movies, container, {clean = true} = {},) {
         lazyLoader.observe(movieImg)
         movieImg.addEventListener('error', () => {
             movieImg.setAttribute('src', 'https://i.postimg.cc/dQ2r7BpF/error-image-photo-icon.png')
+            movieImg.setAttribute('alt', 'Movie not found image')
         })
         
         
@@ -69,10 +94,15 @@ function createMovie(movies, container, {clean = true} = {},) {
         const likeButton = document.createElement('button')
         const likeButtonIcon = document.createElement('img')
         likeButtonIcon.setAttribute('src', '/icons/like-icon.svg')
+        likeButtonIcon.setAttribute('alt', 'Yellow heart icon')
         likeButtonIcon.classList.add('like-icon-img')
         likeButton.classList.add('like-button')
         likeButton.appendChild(likeButtonIcon )
 
+        if (localStorage.getItem(`${movie.id}`)) {
+            likeButton.classList.add('liked')
+            likeButtonIcon.classList.remove('like-icon-img')
+        }
         movieTitle.appendChild(movieTitleText)
         categoryViewImgContainer.appendChild(movieTitle)
         categoryViewImgContainer.appendChild(likeButton)
@@ -85,6 +115,7 @@ function createMovie(movies, container, {clean = true} = {},) {
             event.stopPropagation();
             likeButton.classList.toggle('liked')
             likeButtonIcon.classList.toggle('like-icon-img')
+            likeMovie(movie)
         })
     })
 }
@@ -305,15 +336,24 @@ async function getMovieDetails(movieId) {
     movieDetailsImg.innerHTML = ''
     movieDetailsImg.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + movie.poster_path)
     movieDetailsImg.setAttribute('alt', movie.title);
+    movieDetailsImg.addEventListener('error', () => {
+        movieDetailsImg.setAttribute('src', 'https://i.postimg.cc/C5bLmDtW/default-image.png')
+        movieDetailsImg.setAttribute('alt', 'Movie not found image')
+    })
     movieDetailstitle.textContent = movie.title
     movieScore.textContent = (movie.vote_average.toFixed(1)) + '⭐';
     movieDetailsDescription.innerText =  movie.overview;
     const likeButton = document.createElement('button')
     const likeButtonIcon = document.createElement('img')
     likeButtonIcon.setAttribute('src', '/icons/like-icon.svg')
+    likeButtonIcon.setAttribute('alt', 'Yellow heart icon')
     likeButtonIcon.classList.add('like-icon-img')
     likeButton.classList.add('like-button')
     likeButton.appendChild(likeButtonIcon )
+    if (localStorage.getItem(`${movie.id}`)) {
+        likeButton.classList.add('liked')
+        likeButtonIcon.classList.remove('like-icon-img')
+    }
     movieDetailsContainer.appendChild(likeButton)
     lang.innerText = `Original language: ${(movie.original_language).toUpperCase()}`
     date.innerText = `Release date: ${movie.release_date}`
@@ -327,6 +367,7 @@ async function getMovieDetails(movieId) {
     likeButton.addEventListener('click', ()=> {
         likeButton.classList.toggle('liked')
         likeButtonIcon.classList.toggle('like-icon-img')
+        likeMovie(movie)
     })
 }
 
