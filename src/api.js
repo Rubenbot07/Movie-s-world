@@ -416,6 +416,10 @@ function getFavorites() {
             likeButton.classList.add('liked')
             likeButton.appendChild(likeButtonIcon )
             favoritesMovieContainer.appendChild(likeButton)
+            favoritesMovieContainer.addEventListener('click', ()=> {
+                location.hash = '#movie='  + favorites[i][key].id
+                
+            })
             likeButton.addEventListener('click', ()=> {
                 likeButton.classList.toggle('liked')
                 likeButtonIcon.classList.toggle('like-icon-img')

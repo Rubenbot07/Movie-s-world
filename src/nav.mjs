@@ -3,13 +3,12 @@ const logo = document.querySelector('.logo')
 const categorieslist = document.querySelector('.categories-title')
 const searchIcon = document.querySelector('.search-icon')
 burguerMenu.addEventListener('click', ()=> {
-
+    const searchContainer = document.querySelector('.search')
     line1.classList.toggle('activeline1__bars-menu')
     line2.classList.toggle('activeline2__bars-menu')
     line3.classList.toggle('activeline3__bars-menu')
     menu.classList.toggle('active-menu')
     searchIcon.classList.toggle('inactive')
-    
 })
 
 searchIcon.addEventListener('click', ()=> {

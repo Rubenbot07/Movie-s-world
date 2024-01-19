@@ -82,6 +82,10 @@ searchButton.addEventListener('click', ()=> {
 logo.addEventListener('click', ()=> {
     location.hash = '#home';
     topButton.classList.add('inactive')
+    menu.classList.remove('active-menu')
+    line1.classList.remove('activeline1__bars-menu')
+    line2.classList.remove('activeline2__bars-menu')
+    line3.classList.remove('activeline3__bars-menu')
     homePage()
 })
 const favoritesButton = document.querySelector('.favorites')
