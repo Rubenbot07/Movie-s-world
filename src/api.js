@@ -12,7 +12,6 @@ const api = axios.create({
 
 function likedMoviesList(id) {
     const item = JSON.parse(localStorage.getItem(`${id}`))
-    console.log(item);
     let movies;
     if(item) {
         movies = item;
@@ -387,6 +386,47 @@ async function getTrailer(id) {
     const teaser = trailerVideo[(trailerVideo.length - 1)]
     trailer.innerHTML = `<h3>Watch trailer</h3> <iframe width="560" height="315" src="https://www.youtube.com/embed/${teaser.key}?si=A5LZaUd_qmZofKdR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
     trailerLoading.style.display = 'none'
+}
+
+let favMovie;
+function getFavorites() {
+    likeContainer.innerHTML = ''
+    const favorites = []
+    if(localStorage.length > 0 ) {
+        for(let i = 0; i < localStorage.length; i++) {
+            const favoritesMovieContainer = document.createElement('div')
+            favoritesMovieContainer.classList.add('liked-movies-image-container')
+            likeContainer.appendChild(favoritesMovieContainer)
+            const key = localStorage.key(i)
+            const value = localStorage.getItem(key)
+            favorites.push(JSON.parse(value))
+            const movieImg = document.createElement('img')
+            movieImg.classList.add('min-img')
+            movieImg.setAttribute('src', `https://image.tmdb.org/t/p/w500${favorites[i][key].poster_path}`) 
+            favoritesMovieContainer.appendChild(movieImg)
+            const movieTitle = document.createElement('span')
+            const movieTitleText = document.createTextNode(`${favorites[i][key].title}`)
+            movieTitle.appendChild(movieTitleText)
+            favoritesMovieContainer.appendChild(movieTitle)
+            const likeButton = document.createElement('button')
+            const likeButtonIcon = document.createElement('img')
+            likeButtonIcon.setAttribute('src', '/icons/like-icon.svg')
+            likeButtonIcon.setAttribute('alt', 'Yellow heart icon')
+            likeButton.classList.add('like-button')
+            likeButton.classList.add('liked')
+            likeButton.appendChild(likeButtonIcon )
+            favoritesMovieContainer.appendChild(likeButton)
+            likeButton.addEventListener('click', ()=> {
+                likeButton.classList.toggle('liked')
+                likeButtonIcon.classList.toggle('like-icon-img')
+                likeMovie(favorites[i][key])
+
+                getFavorites()
+            })
+        }
+    }
+
+    
 }
 
 

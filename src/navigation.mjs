@@ -41,7 +41,11 @@ function navigator() {
         movieDetailsPage();
     } else if(location.hash.startsWith('#category=')) {
         categoriesPage();
-    } else {
+
+    } else if (location.hash.startsWith('#favorites')){
+        favoritesPage()
+    }
+    else {
         homePage();
     }
 
@@ -80,7 +84,10 @@ logo.addEventListener('click', ()=> {
     topButton.classList.add('inactive')
     homePage()
 })
-
+const favoritesButton = document.querySelector('.favorites')
+favoritesButton.addEventListener('click', ()=> {
+    location.hash = '#favorites'
+})
 
 function homePage() {
     getTrendingMoviesPreview()
@@ -92,6 +99,7 @@ function homePage() {
     categoryView.classList.add('inactive')
     movieDetailsSection.classList.add('inactive')
     categoryViewLoading.classList.add('inactive')
+    likeSection.classList.add('inactive')
     window.removeEventListener('scroll', backTopButton, 
     {
         pasive : false
@@ -156,3 +164,21 @@ function categoriesPage() {
     getCategoryView(categoryId[1])
     infiniteScroll = getPaginatedCaterorieView(categoryId[1])
 } 
+
+function favoritesPage() {
+    window.addEventListener('scroll', backTopButton, false)
+    likeSection.classList.remove('inactive')
+    sliderContainer.classList.add('inactive')
+    genreSection.classList.add('inactive')
+    trendSection.classList.add('inactive')
+    movieDetailsSection.classList.add('inactive')
+    categoryView.classList.add('inactive')
+    menu.classList.remove('active-menu')
+
+    line1.classList.remove('activeline1__bars-menu')
+    line2.classList.remove('activeline2__bars-menu')
+    line3.classList.remove('activeline3__bars-menu')
+
+    searchIcon.classList.toggle('inactive')
+    getFavorites()
+}

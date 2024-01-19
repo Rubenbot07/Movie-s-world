@@ -54,3 +54,4 @@ const trailerLoading = document.querySelector('.trailer-loading')
 
 //LIKE SECTION
 const likeSection = document.querySelector('.liked-container')
+const likeContainer = document.querySelector('.liked-movies-container')
