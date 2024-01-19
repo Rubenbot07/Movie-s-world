@@ -44,7 +44,28 @@ const lazyLoader = new IntersectionObserver((entries) => {
     })
 })
 
+//like button 
+function likeActions(container, movie) {
+    const likeButton = document.createElement('button')
+    const likeButtonIcon = document.createElement('img')
+    likeButtonIcon.setAttribute('src', '/icons/like-icon.svg')
+    likeButtonIcon.setAttribute('alt', 'Yellow heart icon')
+    likeButtonIcon.classList.add('like-icon-img')
+    likeButton.classList.add('like-button')
+    likeButton.appendChild(likeButtonIcon )
+    container.appendChild(likeButton)
 
+    likeButton.addEventListener('click', (event)=> {
+        event.stopPropagation();
+        likeButton.classList.toggle('liked')
+        likeButtonIcon.classList.toggle('like-icon-img')
+        likeMovie(movie)
+    })
+    if (localStorage.getItem(`${movie.id}`)) {
+        likeButton.classList.add('liked')
+        likeButtonIcon.classList.remove('like-icon-img')
+    }
+}
 
 //search on mobile
 window.addEventListener('keydown', (e)=>{
@@ -90,32 +111,15 @@ function createMovie(movies, container, {clean = true} = {},) {
         
         const movieTitle = document.createElement('span')
         const movieTitleText = document.createTextNode(movie.title)
-        const likeButton = document.createElement('button')
-        const likeButtonIcon = document.createElement('img')
-        likeButtonIcon.setAttribute('src', '/icons/like-icon.svg')
-        likeButtonIcon.setAttribute('alt', 'Yellow heart icon')
-        likeButtonIcon.classList.add('like-icon-img')
-        likeButton.classList.add('like-button')
-        likeButton.appendChild(likeButtonIcon )
-
-        if (localStorage.getItem(`${movie.id}`)) {
-            likeButton.classList.add('liked')
-            likeButtonIcon.classList.remove('like-icon-img')
-        }
+        likeActions(categoryViewImgContainer, movie)
         movieTitle.appendChild(movieTitleText)
         categoryViewImgContainer.appendChild(movieTitle)
-        categoryViewImgContainer.appendChild(likeButton)
         categoryViewImgContainer.addEventListener('click', ()=> {
             console.log(movie.id, movie.title);
             location.hash = '#movie='  + movie.id
             
         })
-        likeButton.addEventListener('click', (event)=> {
-            event.stopPropagation();
-            likeButton.classList.toggle('liked')
-            likeButtonIcon.classList.toggle('like-icon-img')
-            likeMovie(movie)
-        })
+
     })
 }
 //Trending movies
@@ -342,18 +346,7 @@ async function getMovieDetails(movieId) {
     movieDetailstitle.textContent = movie.title
     movieScore.textContent = (movie.vote_average.toFixed(1)) + '⭐';
     movieDetailsDescription.innerText =  movie.overview;
-    const likeButton = document.createElement('button')
-    const likeButtonIcon = document.createElement('img')
-    likeButtonIcon.setAttribute('src', '/icons/like-icon.svg')
-    likeButtonIcon.setAttribute('alt', 'Yellow heart icon')
-    likeButtonIcon.classList.add('like-icon-img')
-    likeButton.classList.add('like-button')
-    likeButton.appendChild(likeButtonIcon )
-    if (localStorage.getItem(`${movie.id}`)) {
-        likeButton.classList.add('liked')
-        likeButtonIcon.classList.remove('like-icon-img')
-    }
-    movieDetailsContainer.appendChild(likeButton)
+    likeActions(movieDetailsContainer, movie)
     lang.innerText = `Original language: ${(movie.original_language).toUpperCase()}`
     date.innerText = `Release date: ${movie.release_date}`
     runTime.innerText = `Runtime: ${movie.runtime} min`
@@ -362,12 +355,6 @@ async function getMovieDetails(movieId) {
     createCategories(movie.genres, movieGenres)
     getRelatedMovies(movieId)
     getTrailer(movieId)
-
-    likeButton.addEventListener('click', ()=> {
-        likeButton.classList.toggle('liked')
-        likeButtonIcon.classList.toggle('like-icon-img')
-        likeMovie(movie)
-    })
 }
 
 async function getRelatedMovies(id) {
@@ -420,7 +407,8 @@ function getFavorites() {
                 location.hash = '#movie='  + favorites[i][key].id
                 
             })
-            likeButton.addEventListener('click', ()=> {
+            likeButton.addEventListener('click', (event)=> {
+                event.stopPropagation();
                 likeButton.classList.toggle('liked')
                 likeButtonIcon.classList.toggle('like-icon-img')
                 likeMovie(favorites[i][key])
@@ -428,9 +416,5 @@ function getFavorites() {
                 getFavorites()
             })
         }
-    }
-
-    
+    }   
 }
-
-
