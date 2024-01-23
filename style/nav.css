@@ -39,7 +39,7 @@ nav {
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: 800px;
+    transform: translateX(-100%);
     width: 100vw;
     padding-block-start: 20px;
     transition: all 400ms ease;
@@ -51,7 +51,7 @@ nav {
 
 }
 .active-menu {
-    right: 0px;
+    transform: translateX(0%);
     flex-direction: column;
     opacity: 100;
     background-color: var(--main-color);
@@ -103,10 +103,15 @@ nav {
     flex-direction: column;
     height: auto;
 }
+.favorites {
+    margin-left: 20px;
+    color: var(--dark-color);
+}
 .logo {
-    width: 80vw;
+    width: 100vw;
     text-align: center;
 }
+
 nav .search{
     background-color: var(--main-color);
     display: flex;
@@ -161,3 +166,56 @@ nav .search{
 .search-button img {
     width: 20px;
 }
+
+@media (min-width: 768px) {
+    .bars__menu {
+        display: none;
+    }
+    .menu {
+        width: 0px;
+    }
+    .logo {
+        text-align: start;
+    }
+    .categories-title {
+        position: absolute;
+        top: -35px;
+        left: 200px;
+    }
+    .categories-list {
+        position: absolute;
+        top: 5px;
+        left: 100px;
+        padding: 10px;
+        border-radius: 14px;
+        height: 0px;
+        width: 400px;
+    }
+    .active-menu-ul {
+        background-color: var(--main-color);
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: 200px;
+        width: 400px;
+        padding-inline-start: 0;
+    }
+    .list-item {
+        border-bottom:  none;
+    }
+    .favorites {
+        position: absolute;
+        top: -35px;
+        left: 320px;
+    }
+    .active-search-input {
+        width: 72vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .active-search-input {
+        width: 75vw;
+    }
+}
+

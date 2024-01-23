@@ -1,7 +1,6 @@
 @import url(./nav.css);
 @import url(./slider.css);
 @import url(./genres.css);
-@import url(./trends.css);
 @import url(./category-view.css);
 @import url(./movieDetails.css);
 *{
@@ -36,6 +35,9 @@ body {
     background-color: var(--main-color);
     border-radius: 12px;
     width: 40vw;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+    max-width: 200px;
     margin-block-start: 32px;
     margin-block-end: 32px;
     text-decoration: none;
@@ -75,9 +77,9 @@ body {
     margin-block-end: 30px;
 }
 .back-arrow {
-    position: relative;
-    top: 15px;
-    right: 60px;
+    position: absolute;
+    top: 80px;
+    left: 40px;
     width: 40px;
     height: 40px;
     border-radius: 100%;
@@ -146,3 +148,19 @@ body {
     }
 }
 
+@media (min-width: 768px) {
+
+    .back-arrow {
+        position: absolute;
+        left: 20px;
+        top: 80px;
+    }
+}
+@media (min-width: 1024px) {
+
+    .back-arrow {
+        position: absolute;
+        left: 180px;
+        top: 80px;
+    }
+}

@@ -58,3 +58,22 @@
     height: 600px;
     transition: all  400ms ease;
 }
+@media (min-width: 768px) {
+    .genres-list {
+        grid-template-columns: repeat(5, 1fr);
+        column-gap: 0px;
+    }
+    .down-arrow {
+        display: none;
+    }
+    .genres-list-item h3 {
+        width: 95px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .genres-list {
+        grid-template-columns: repeat(7, 1fr);
+        column-gap: 0px;
+    }
+}

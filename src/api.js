@@ -152,14 +152,7 @@ async function getTrendingMoviesPreview() {
         })
     })
 }
-async function getTrendingMovies() {
-    const { data } = await api('trending/movie/day')
-    const movies = data.results;
-    maxPage = data.total_pages;
-    console.log(maxPage);
-    createMovie(movies, trendingMovieContainer, {clean: true})
 
-}
 
 function getPaginatedTrendingMovies() {
     return async function () {
@@ -189,7 +182,6 @@ async function getCategoriesPreview() {
     const {data} = await api('genre/movie/list');
     const categories = data.genres;
     categoriesContainer.innerHTML = '';
-    
     categories.forEach(category => {
         // const categoriesContainer = document.querySelector('.categories-list');
         const listItem = document.createElement('li')
@@ -266,10 +258,8 @@ moreButton.addEventListener('click', ()=> {
 async function getCategoryView(id){
     const { data } = await api('discover/movie?with_genres=' + id)
     const movies = data.results;
-    console.log(movies);
     categoryViewContainer.innerHTML = ''
     maxPage = data.total_pages;
-    console.log(maxPage);
     createMovie(movies, categoryViewContainer,{clean: true})
     categoryViewLoading.style.display = 'none'
 }
@@ -310,7 +300,7 @@ async function getMoviesBysearch(query) {
     maxPage = data.total_pages;
     createMovie(movies, categoryViewContainer)
 }
-function getPaginatedBySearch() {
+function getPaginatedBySearch(query) {
     return async function () {
         const {
             scrollTop, scrollHeight, clientHeight
@@ -375,7 +365,6 @@ async function getTrailer(id) {
     trailerLoading.style.display = 'none'
 }
 
-let favMovie;
 function getFavorites() {
     likeContainer.innerHTML = ''
     const favorites = []

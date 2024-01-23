@@ -40,3 +40,30 @@
 .category-view .section-title {
     width: 90vw;
 }
+
+@media (min-width: 1024px) {
+    .category-view-movies-container {
+        padding-inline-start: 40px;
+        padding-inline-end: 40px;
+    }
+    .category-view-title {
+        max-width: 200px;
+    }
+    .category-view .section-title {
+        align-self: center;
+        margin-block-end: 20px;
+    }
+    .min-img {
+        height: 304px;
+    }
+    .category-view-movies-container, .liked-movies-container {
+        width: 95vw;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 238px));
+        gap: 20px;
+    }
+    .back-arrow {
+        right: 5000px;
+    }
+}

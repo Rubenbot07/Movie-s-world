@@ -1,9 +1,8 @@
 const burguerMenu = document.querySelector('.bars__menu')
 const logo = document.querySelector('.logo')
-const categorieslist = document.querySelector('.categories-title')
 const searchIcon = document.querySelector('.search-icon')
+
 burguerMenu.addEventListener('click', ()=> {
-    const searchContainer = document.querySelector('.search')
     line1.classList.toggle('activeline1__bars-menu')
     line2.classList.toggle('activeline2__bars-menu')
     line3.classList.toggle('activeline3__bars-menu')
@@ -14,11 +13,17 @@ burguerMenu.addEventListener('click', ()=> {
 searchIcon.addEventListener('click', ()=> {
     const inputBar = document.querySelector('.input-bar')
     inputBar.classList.toggle('active-search-input')
-    logo.classList.toggle('inactive')
     searchIcon.classList.toggle('search-icon')
     searchIcon.classList.toggle('active-search-icon')
     searchButton.classList.toggle('inactive')
     inputBar.value = '';
+    if (window.innerWidth < 768) {
+        logo.classList.toggle('inactive')
+    }
+    if(window.innerWidth > 768) {
+        categorieslist.classList.toggle('inactive')
+        favoritesButton.classList.toggle('inactive')
+    }
 })
 
 
