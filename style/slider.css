@@ -65,4 +65,8 @@
     .swiper {
         max-width: 75vw;
     }
+    .swiper-slide img {
+        width: 100%;
+    }
+    
 }

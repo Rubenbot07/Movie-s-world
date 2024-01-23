@@ -71,6 +71,7 @@ body {
     border: 1px solid var(--main-color);
     border-radius: 14px;
     width: 30vw;
+    max-width: 200px;
     font-size: 1.2em;
     font-family: 'Jockey One', sans-serif;
     color: var(--main-color);
