@@ -25,18 +25,28 @@
     gap: 10px;
     color: var(--dark-color);
 }
-
 .genres-list-item .clapperboard {
     width: 20px;
 }
+
 .genres-list-item h3 {
+    display: inline-block;
     text-align: center;
     border-radius: 8px;
     width: 104px;
     height: 30px;
     font-size: 1.1em;
-    background-color: var(--main-color);
+    transition: background-position 0.2s ease;
+    background-image: linear-gradient(to right, var(--main-color) 50%, var(--dark-color) 50%);
+    background-size: 200% 100%;
+    cursor: pointer;
 }
+.genres-list-item h3:hover {
+    color: var(--main-color);
+    background-position: -100% 0;
+    border: 2px solid var(--main-color);
+}
+
 .more-button {
     width: auto;
     align-self: center;
@@ -66,14 +76,13 @@
     .down-arrow {
         display: none;
     }
-    .genres-list-item h3 {
-        width: 95px;
-    }
+
+
 }
 
 @media (min-width: 1024px) {
     .genres-list {
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         column-gap: 0px;
     }
 }

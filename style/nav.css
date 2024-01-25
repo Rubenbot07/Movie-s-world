@@ -11,6 +11,7 @@ nav {
 .bars__menu {
     height: 30px;
     width: 30px;
+    cursor: pointer;
 }
 
 .bars__menu span {
@@ -67,6 +68,10 @@ nav {
     transition: all 100ms ease;
     margin-block-end: 10px;
     border-bottom:  1px solid var(--dark-color);
+    cursor: pointer;
+}
+.list-item:hover {
+    font-size: 1em;
 }
 .active-list-item {
     font-size: 0.8em;
@@ -79,11 +84,20 @@ nav {
     align-items: center;
     margin-block-end: 10px;
     color: var(--dark-color);
+    cursor: pointer;
+}
+.categories-title:hover {
+    transition: all 200ms ease-out;
+    font-size: 1.1em;
+    border-bottom: 2px solid var(--dark-color);
+    padding-right: 10px;
+    margin-left: 10px;
+    max-width: fit-content;
 }
 .right-arrow{
     width: 20px;
     transition: all 300ms ease;
-
+    cursor: pointer;
 }
 .active-right-arrow{
     transform: rotate(90deg);
@@ -106,10 +120,20 @@ nav {
 .favorites {
     margin-left: 20px;
     color: var(--dark-color);
+    cursor: pointer;
+}
+.favorites:hover {
+    transition: all 200ms ease-out;
+    font-size: 1.1em;
+    border-bottom: 2px solid var(--dark-color);
+    padding-right: 10px;
+    max-width: fit-content;
 }
 .logo {
-    width: 100vw;
+    margin: 0 auto;
+    width: auto;
     text-align: center;
+    cursor: pointer;
 }
 
 nav .search{
@@ -122,6 +146,7 @@ nav .search{
     width: auto;
     justify-self: center;
     gap: 10px;
+    cursor: pointer;
 }
 .input-bar {
     width: 0px;
@@ -149,11 +174,13 @@ nav .search{
 .search-icon {
     width: 20px;
     height: 100%;
+    cursor: pointer;
 }
 .active-search-icon {
     width: 20px;
     height: 100%;
     content: url(../icons/x-symbol.svg);
+    cursor: pointer;
 }
 .search-button {
     width: 20px;
@@ -162,6 +189,7 @@ nav .search{
     right: 55px;
     padding-block-end: 6px;
     z-index: 2;
+    cursor: pointer;
 }
 .search-button img {
     width: 20px;
@@ -175,12 +203,16 @@ nav .search{
         width: 0px;
     }
     .logo {
+        margin: 0 0px 0px 10px;
         text-align: start;
     }
     .categories-title {
         position: absolute;
         top: -35px;
         left: 200px;
+    }
+    .categories-title:hover {
+        margin-left: 0;
     }
     .categories-list {
         position: absolute;
@@ -191,6 +223,7 @@ nav .search{
         height: 0px;
         width: 400px;
     }
+
     .active-menu-ul {
         background-color: var(--main-color);
         display: flex;
@@ -203,11 +236,18 @@ nav .search{
     .list-item {
         border-bottom:  none;
     }
+    .list-item:hover {
+        transition: all 100ms ease-out;
+        font-size: 1em;
+        border-bottom: 2px solid var(--dark-color);
+        max-width: fit-content;
+    }
     .favorites {
         position: absolute;
         top: -35px;
         left: 320px;
     }
+
     .active-search-input {
         width: 72vw;
     }

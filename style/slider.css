@@ -42,6 +42,7 @@
     width: 80%;
     margin: 0 auto;
     border-radius: 12px;
+    cursor: pointer;
 }
 
 .swiper-button-next, .swiper-button-prev {

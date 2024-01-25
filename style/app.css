@@ -76,6 +76,14 @@ body {
     font-family: 'Jockey One', sans-serif;
     color: var(--main-color);
     margin-block-end: 30px;
+    transition: background-position 0.2s ease;
+    background-image: linear-gradient(to right, var(--dark-color) 50%, var(--main-color) 50%);
+    background-size: 200% 100%;
+    cursor: pointer;
+}
+.view-more-trends:hover {
+    background-position: -100% 0;
+    color: var(--dark-color);
 }
 .back-arrow {
     position: absolute;
@@ -86,6 +94,9 @@ body {
     border-radius: 100%;
     background-color: none;
 }
+.back-arrow:hover {
+    transform: scale(.9);
+}
 .like-button {
     position: absolute;
     width: 40px;
@@ -94,6 +105,7 @@ body {
     border-radius: 100%;
     border: none;
     margin: 4px;
+    cursor: pointer;
 }
 .like-button img {
     width: 50%;
@@ -108,6 +120,7 @@ body {
 }
 .top-button {
     position:fixed;
+    z-index: 1;
     height: 50px;
     width: 50px;
     right: 20px;
@@ -117,6 +130,7 @@ body {
     transition: all;
     background-color: var(--main-color);
     scroll-behavior: smooth;
+    cursor: pointer;
 }
 .top-button img {
     width: 100%;

@@ -31,7 +31,7 @@ function likeMovie (movie) {
     }
 }
 
-//Util
+//Utils
 let page = 1;
 let maxPage;
 const lazyLoader = new IntersectionObserver((entries) => {
@@ -43,6 +43,15 @@ const lazyLoader = new IntersectionObserver((entries) => {
         }
     })
 })
+
+//remove-menu
+
+function removeMenu() {
+    menu.classList.remove('active-menu')
+    line1.classList.remove('activeline1__bars-menu')
+    line2.classList.remove('activeline2__bars-menu')
+    line3.classList.remove('activeline3__bars-menu')
+}
 
 //like button 
 function likeActions(container, movie) {
@@ -183,13 +192,21 @@ async function getCategoriesPreview() {
     const categories = data.genres;
     categoriesContainer.innerHTML = '';
     categories.forEach(category => {
-        // const categoriesContainer = document.querySelector('.categories-list');
+        const categoriesContainer = document.querySelector('.categories-list');
         const listItem = document.createElement('li')
         listItem.classList.add('list-item')
         categoriesContainer.appendChild(listItem)
         const itemText = document.createTextNode(category.name)
         listItem.appendChild(itemText)
-        listItem.classList.add('list-item')        
+        listItem.addEventListener('click', ()=> {
+            const categoryViewTitle = document.querySelector('.category-view-title')
+            categoryViewTitle.innerHTML = category.name
+            location.hash = (`#category=${category.id}-${category.name}`)
+            listItem.classList.toggle('active-list-item')
+            list.classList.toggle('active-menu-ul')
+            rightArrow.classList.toggle('active-right-arrow')
+            removeMenu()
+        })
     })
 
 }
@@ -220,31 +237,9 @@ function createCategories(categories, container){
 async function categoriesSection() {
     const { data } = await api('genre/movie/list');
     const categories = data.genres;
+    console.log(data.genres);
     createCategories(categories, genresContainer)
-    // genresContainer.innerHTML = ''
-    // categories.forEach(category => {
-    //     // const genresMainContainer = document.querySelector('.genres-container')
-    //     // const genresContainer = document.querySelector('.genres-list');
-    //     const  genreListItem = document.createElement('li');
-    //     const  genreTitleContainer  = document.createElement('h3')
-    //     const  genreTitle  =  document.createTextNode(category.name)
-    //     genreListItem.classList.add('genres-list-item');
-    //     genreListItem.addEventListener('click', ()=> {
-    //         const categoryViewTitle = document.querySelector('.category-view-title')
-    //         categoryViewTitle.innerHTML = category.name
-    //         location.hash = (`#category=${category.id}-${category.name}`) 
-    //     })
-    //     genresContainer.appendChild(genreListItem)
-        
-    //     const icon = document.createElement('img')
-    //     icon.classList.add('clapperboard')
-    //     icon.setAttribute('src', '/icons/clapper-clapperboard-svgrepo-com.svg')
-    //     icon.setAttribute('alt', 'clapperboard')
-    //     genreListItem.appendChild(icon);
-    //     genreTitleContainer.appendChild(genreTitle)
-    //     genreListItem.appendChild(genreTitleContainer)
-          
-    // })
+
 }
 // View more button
 const moreButton = document.querySelector('.more-button')

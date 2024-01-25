@@ -262,17 +262,21 @@
     .movie-details-img, .movie-image-loading {
         width: 480px;
         max-width: none;
-        border-top-left-radius: 24px;
-        border-bottom-left-radius: 24px;
+        border-radius: 24px;
     }
     .movie-details-info-container, .movie-details-info-container-loadin {
         font-size: 1.5em;
-        gap: 70px;
+        gap: 30px;
+        height: 95%;
         border-top-right-radius: 24px;
         border-bottom-right-radius: 24px;
+        max-height: 720px;
     }
     .arrow-container {
-        border-top-left-radius: 24px;
+        border-radius: 24px;
+    }
+    .movie-description {
+        width: 100%;
     }
     .trailer {
         max-width: none;

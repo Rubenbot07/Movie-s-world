@@ -17,6 +17,7 @@ const menu = document.querySelector('.menu')
 const inputBar = document.querySelector('.input-bar')
 const list = document.querySelector('.categories-list');
 const listElement = document.querySelectorAll('.list-item')
+const rightArrow = document.querySelector('.right-arrow')
 
 // CATEGORY VIEW
 const categoryViewSection = document.querySelector('.category-view')

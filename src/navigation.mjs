@@ -85,10 +85,7 @@ searchButton.addEventListener('click', ()=> {
 logo.addEventListener('click', ()=> {
     location.hash = '#home';
     topButton.classList.add('inactive')
-    menu.classList.remove('active-menu')
-    line1.classList.remove('activeline1__bars-menu')
-    line2.classList.remove('activeline2__bars-menu')
-    line3.classList.remove('activeline3__bars-menu')
+    removeMenu()
     homePage()
 })
 favoritesButton.addEventListener('click', ()=> {
@@ -119,6 +116,7 @@ function searchPage() {
     genreSection.classList.add('inactive')
     movieDetailsSection.classList.add('inactive')
     categoryView.classList.remove('inactive')
+    removeMenu()
     const query = decodeURI(location.hash.split("=")[1]);
     //decodeURI Sustituye a cada secuencia de escape codificado en URI con el carácter que representa.
     getCategoriesPreview()
@@ -161,12 +159,7 @@ function favoritesPage() {
     genreSection.classList.add('inactive')
     movieDetailsSection.classList.add('inactive')
     categoryView.classList.add('inactive')
-    menu.classList.remove('active-menu')
-
-    line1.classList.remove('activeline1__bars-menu')
-    line2.classList.remove('activeline2__bars-menu')
-    line3.classList.remove('activeline3__bars-menu')
-
+    removeMenu()
  
     if (window.innerWidth < 768) {
         searchIcon.classList.toggle('inactive')
