@@ -7,6 +7,9 @@ const searchButton = document.querySelector('.search-button')
 const searchIcon = document.querySelector('.search-icon')
 const movieDetailsSection = document.querySelector('.movie-details')
 const logo = document.querySelector('.logo')
+const languagesTitle = document.querySelector('.languages-title')
+const englishButton = document.querySelector('.english');
+const spanishButton = document.querySelector('.spanish');
 //BURGUER MENU
 const line1 = document.querySelector('.line1__bars-menu')
 const line2 = document.querySelector('.line2__bars-menu')

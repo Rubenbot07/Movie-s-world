@@ -17,6 +17,22 @@ topButton.addEventListener('click',()=> {
       });
 })
 
+englishButton.addEventListener('click', () => {
+    language = 'en-US';
+    navigator();
+    trendingPreviewMoviesContainer.innerHTML = ''
+    getTrendingMoviesPreview()
+    removeMenu()
+})
+
+spanishButton.addEventListener('click', () => {
+    language = 'es';
+    navigator();
+    trendingPreviewMoviesContainer.innerHTML = ''
+    getTrendingMoviesPreview()
+    removeMenu()
+})
+
 function backTopButton() {
 
     if(document.documentElement.scrollTop < 400) {
@@ -25,6 +41,8 @@ function backTopButton() {
         topButton.classList.remove('inactive')
     }
 }
+
+
 function navigator() {
     console.log('navigator');
     if(infiniteScroll) {
@@ -114,6 +132,7 @@ function searchPage() {
     window.addEventListener('scroll', backTopButton, false)
     sliderContainer.classList.add('inactive')
     genreSection.classList.add('inactive')
+    likeSection.classList.add('inactive')
     movieDetailsSection.classList.add('inactive')
     categoryView.classList.remove('inactive')
     removeMenu()
@@ -161,8 +180,8 @@ function favoritesPage() {
     categoryView.classList.add('inactive')
     removeMenu()
  
-    if (window.innerWidth < 768) {
-        searchIcon.classList.toggle('inactive')
-    }
+    // if (window.innerWidth < 768) {
+    //     searchIcon.classList.toggle('inactive')
+    // }
     getFavorites()
 }

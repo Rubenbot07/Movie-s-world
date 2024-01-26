@@ -129,6 +129,40 @@ nav {
     padding-right: 10px;
     max-width: fit-content;
 }
+.languages-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    height: 22px;
+    margin-inline-start: 20px;
+    margin-block-start: 10px;
+}
+.languages-container .languages-title {
+    align-items: center;
+    color: var(--dark-color);
+}
+.languages-title:hover {
+    transition: all 200ms ease-out;
+    font-size: 1.1em;
+    border-bottom: 2px solid var(--dark-color);
+    padding-right: 10px;
+    max-width: fit-content;
+}
+
+.languages-container .english, .spanish {
+    width: 25px;
+    height: 25px;
+}
+.english img, .spanish img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+.english:hover, .spanish:hover {
+    transform: scale(1.2);
+}
 .logo {
     margin: 0 auto;
     width: auto;
@@ -246,6 +280,15 @@ nav .search{
         position: absolute;
         top: -35px;
         left: 320px;
+    }
+    .languages-container {
+        flex-wrap: nowrap;
+        width: auto;
+        position: absolute;
+        top: -35px;
+        left: 440px;
+        margin-block-start: 0;
+        margin-inline-start: 0;
     }
 
     .active-search-input {

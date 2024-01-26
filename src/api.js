@@ -7,6 +7,10 @@ const api = axios.create({
     },
     params: {
         'api_key' : API_KEY,
+    },
+    languages: {
+        es: 'es',
+    //     'es': es,
     }
 });
 
@@ -34,6 +38,7 @@ function likeMovie (movie) {
 //Utils
 let page = 1;
 let maxPage;
+let language = 'en-US'
 const lazyLoader = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         // console.log(entry.target.setAttribute);
@@ -136,10 +141,26 @@ function createMovie(movies, container, {clean = true} = {},) {
 async function getTrendingMoviesPreview() {
     // const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY);
     // const data = await res.json();
-    const {data} = await api('trending/movie/day')
+    const {data} = await api('trending/movie/day', {
+        params : {
+            language
+        }
+    })
     const movies = data.results;
     const limit = movies.slice(0,9)
     console.log(movies);
+    const trendsTitleContainer = document.querySelector('.trending-title')
+    trendsTitleContainer.innerHTML = '';
+    const trendsTitle = document.createElement('h2')
+    trendsTitleContainer.appendChild(trendsTitle);
+    trendsTitle.innerHTML = '';
+    if(language == 'en-US') {
+        trendsTitle.innerText = 'Trends'
+        viewMoreTrends.innerText = 'View more' 
+    } else {
+        trendsTitle.innerText = 'Tendencias';
+        viewMoreTrends.innerText = 'Ver más'
+    }
     const sliderLoading = document.querySelector('.slider-loading')
     sliderLoading.style.display = 'none'
     limit.forEach(movie => {
@@ -176,7 +197,8 @@ function getPaginatedTrendingMovies() {
         if(scrollIsBottom && pageIsNotMax) {
             const { data } = await api('trending/movie/day', {
                 params : {
-                    page : ++page
+                    page : ++page,
+                    language
                 }
             })
             const movies = data.results;
@@ -188,9 +210,17 @@ function getPaginatedTrendingMovies() {
 
 //Categories
 async function getCategoriesPreview() {
-    const {data} = await api('genre/movie/list');
+    const {data} = await api('genre/movie/list', {
+        params : {
+            language
+        }
+    });
     const categories = data.genres;
     categoriesContainer.innerHTML = '';
+    const categoriesGenresTitle = document.querySelector('.genres-title');
+    (language == 'en-US') 
+    ? categoriesGenresTitle.innerText = 'Categories'
+    : categoriesGenresTitle.innerText = 'Categorías';
     categories.forEach(category => {
         const categoriesContainer = document.querySelector('.categories-list');
         const listItem = document.createElement('li')
@@ -235,7 +265,11 @@ function createCategories(categories, container){
 }
 
 async function categoriesSection() {
-    const { data } = await api('genre/movie/list');
+    const { data } = await api('genre/movie/list', {
+        params: {
+            language
+        }
+    });
     const categories = data.genres;
     console.log(data.genres);
     createCategories(categories, genresContainer)
@@ -251,7 +285,11 @@ moreButton.addEventListener('click', ()=> {
 //category view
 
 async function getCategoryView(id){
-    const { data } = await api('discover/movie?with_genres=' + id)
+    const { data } = await api('discover/movie?with_genres='+ id, {
+        params : {
+            language
+        }
+    })
     const movies = data.results;
     categoryViewContainer.innerHTML = ''
     maxPage = data.total_pages;
@@ -271,7 +309,8 @@ function getPaginatedCaterorieView(id) {
         if(scrollIsBottom && pageIsNotMax) {
             const { data } = await api('discover/movie?with_genres='+ id, {
                 params : {
-                    page : ++page
+                    page : ++page, 
+                    language
                 }
             })
             const movies = data.results;
@@ -285,6 +324,7 @@ async function getMoviesBysearch(query) {
     const { data } = await api('search/movie', {
         params: {
             query,
+            language
         }
     })
     const movies = data.results;
@@ -309,7 +349,8 @@ function getPaginatedBySearch(query) {
             const { data } = await api('search/movie', {
                 params : {
                     query,
-                    page : ++page
+                    page : ++page,
+                    language
                 }
             })
             const movies = data.results;
@@ -319,7 +360,11 @@ function getPaginatedBySearch(query) {
    
 }
 async function getMovieDetails(movieId) {
-    const { data: movie } = await api('movie/' + movieId)
+    const { data: movie } = await api('movie/' + movieId, {
+        params : {
+            language
+        }
+    })
     console.log(movie);
     movieDetailsImg.innerHTML = ''
     movieDetailsImg.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + movie.poster_path)
@@ -331,10 +376,18 @@ async function getMovieDetails(movieId) {
     movieDetailstitle.textContent = movie.title
     movieScore.textContent = (movie.vote_average.toFixed(1)) + '⭐';
     movieDetailsDescription.innerText =  movie.overview;
+    let originalLanguage = "Original language";
+    let releaseDate = 'Release date';
+    let time = 'Runtime'
+    if(language !== 'en-US') {
+        originalLanguage = 'Idioma original';
+        releaseDate = 'Lanzamiento';
+        time = 'Duración'
+    } 
     likeActions(movieDetailsContainer, movie)
-    lang.innerText = `Original language: ${(movie.original_language).toUpperCase()}`
-    date.innerText = `Release date: ${movie.release_date}`
-    runTime.innerText = `Runtime: ${movie.runtime} min`
+    lang.innerText = `${originalLanguage}: ${(movie.original_language).toUpperCase()}`
+    date.innerText = `${releaseDate}: ${movie.release_date}`
+    runTime.innerText = `${time}: ${movie.runtime} min`
     movieDetailsImgLoading.style.display = 'none'
     movieInfoLoading.style.display = 'none'
     createCategories(movie.genres, movieGenres)
@@ -343,20 +396,34 @@ async function getMovieDetails(movieId) {
 }
 
 async function getRelatedMovies(id) {
-    const { data } = await api(`movie/${id}/similar`)
+    const { data } = await api(`movie/${id}/similar`, {
+        params : {
+            language
+        }
+    })
     const relatedMovies = data.results
     const limit = relatedMovies.slice(0, 6)
     console.log(limit);
     relatedMoviesContainerLoading.style.display = 'none';
+    const relatedMoviesTitle = document.querySelector('.related-movies-title');
+    (language === 'en-US') 
+    ? relatedMoviesTitle.innerText = 'Related movies' 
+    : relatedMoviesTitle.innerText = 'Películas relacionadas'
     createMovie(limit, relatedMoviesContainer);
 }
 
 async function getTrailer(id) {
-    const { data } = await api(`movie/${id}/videos`)
+    const { data } = await api(`movie/${id}/videos`, {
+        params : {
+            language
+        }
+    })
     trailer.innerHTML = ''
+    let trailertitle = 'Watch trailer';
+    (language !== 'en-US') ? trailertitle = 'Ver trailer': '';
     const trailerVideo = data.results
     const teaser = trailerVideo[(trailerVideo.length - 1)]
-    trailer.innerHTML = `<h3>Watch trailer</h3> <iframe width="560" height="315" src="https://www.youtube.com/embed/${teaser.key}?si=A5LZaUd_qmZofKdR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+    trailer.innerHTML = `<h3>${trailertitle}</h3> <iframe width="560" height="315" src="https://www.youtube.com/embed/${teaser.key}?si=A5LZaUd_qmZofKdR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
     trailerLoading.style.display = 'none'
 }
 
