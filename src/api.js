@@ -14,6 +14,8 @@ const api = axios.create({
     }
 });
 
+
+// local storage section
 function likedMoviesList(id) {
     const item = JSON.parse(localStorage.getItem(`${id}`))
     let movies;
@@ -34,6 +36,7 @@ function likeMovie (movie) {
         localStorage.setItem(`${movie.id}`, JSON.stringify(likedMovies))
     }
 }
+
 
 //Utils
 let page = 1;
@@ -129,7 +132,6 @@ function createMovie(movies, container, {clean = true} = {},) {
         movieTitle.appendChild(movieTitleText)
         categoryViewImgContainer.appendChild(movieTitle)
         categoryViewImgContainer.addEventListener('click', ()=> {
-            console.log(movie.id, movie.title);
             location.hash = '#movie='  + movie.id
             
         })
@@ -148,7 +150,6 @@ async function getTrendingMoviesPreview() {
     })
     const movies = data.results;
     const limit = movies.slice(0,9)
-    console.log(movies);
     const trendsTitleContainer = document.querySelector('.trending-title')
     trendsTitleContainer.innerHTML = '';
     const trendsTitle = document.createElement('h2')
@@ -177,7 +178,6 @@ async function getTrendingMoviesPreview() {
         movieContainer.appendChild(movieImg);
         trendingPreviewMoviesContainer.appendChild(movieContainer)
         movieContainer.addEventListener('click', ()=> {
-            console.log(movie.id, movie.title);
             location.hash = '#movie=' + movie.id;
         })
     })
@@ -208,7 +208,7 @@ function getPaginatedTrendingMovies() {
    
 }
 
-//Categories
+//Categories of the home page
 async function getCategoriesPreview() {
     const {data} = await api('genre/movie/list', {
         params : {
@@ -240,6 +240,8 @@ async function getCategoriesPreview() {
     })
 
 }
+
+// create categories of the nav
 function createCategories(categories, container){
     container.innerHTML = ''
     categories.forEach(category => {
@@ -271,7 +273,6 @@ async function categoriesSection() {
         }
     });
     const categories = data.genres;
-    console.log(data.genres);
     createCategories(categories, genresContainer)
 
 }
@@ -281,6 +282,7 @@ moreButton.addEventListener('click', ()=> {
     genresMainContainer.classList.toggle('active-genres-main-container')
     moreButton.classList.toggle('active-more-button')
 })
+
 
 //category view
 
@@ -328,7 +330,6 @@ async function getMoviesBysearch(query) {
         }
     })
     const movies = data.results;
-    console.log(movies);
     const title = document.querySelector('.category-view-title')
     title.innerHTML  = ''
     title.innerHTML = inputBar.value
@@ -365,7 +366,6 @@ async function getMovieDetails(movieId) {
             language
         }
     })
-    console.log(movie);
     movieDetailsImg.innerHTML = ''
     movieDetailsImg.setAttribute('src', 'https://image.tmdb.org/t/p/w500' + movie.poster_path)
     movieDetailsImg.setAttribute('alt', movie.title);
@@ -403,7 +403,6 @@ async function getRelatedMovies(id) {
     })
     const relatedMovies = data.results
     const limit = relatedMovies.slice(0, 6)
-    console.log(limit);
     relatedMoviesContainerLoading.style.display = 'none';
     const relatedMoviesTitle = document.querySelector('.related-movies-title');
     (language === 'en-US') 

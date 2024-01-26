@@ -2,11 +2,14 @@
 //NAVBAR
 const burguerMenu = document.querySelector('.bars__menu')
 const categorieslist = document.querySelector('.categories-title')
+const categoriesTitle = document.querySelector('.categories-title-span');
 const favoritesButton = document.querySelector('.favorites')
+const favoritesSectionTitle = document.querySelector('.favorites-section-title')
 const searchButton = document.querySelector('.search-button')
 const searchIcon = document.querySelector('.search-icon')
 const movieDetailsSection = document.querySelector('.movie-details')
 const logo = document.querySelector('.logo')
+const languageContainer = document.querySelector('.languages-container')
 const languagesTitle = document.querySelector('.languages-title')
 const englishButton = document.querySelector('.english');
 const spanishButton = document.querySelector('.spanish');

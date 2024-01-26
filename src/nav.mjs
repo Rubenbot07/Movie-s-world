@@ -1,12 +1,12 @@
 const burguerMenu = document.querySelector('.bars__menu')
 const logo = document.querySelector('.logo')
 const searchIcon = document.querySelector('.search-icon')
-const categoriesTitle = document.querySelector('.categories-title-span');
 if(language === 'en-US') {
     categoriesTitle.innerText = 'Categories'
     favoritesButton.innerText = 'Favorites'
     languagesTitle.innerText = 'Languages'
 } else {
+    categoriesTitle.innerHTML = 'Categorias'
     categoriesTitle.innerText = 'Categorías'
     favoritesButton.innerText = 'Favoritos'
     languagesTitle.innerText = 'Idiomas'
@@ -40,6 +40,7 @@ searchIcon.addEventListener('click', ()=> {
     if(window.innerWidth > 768) {
         categorieslist.classList.toggle('inactive')
         favoritesButton.classList.toggle('inactive')
+        languageContainer.classList.toggle('inactive')
     }
 })
 
