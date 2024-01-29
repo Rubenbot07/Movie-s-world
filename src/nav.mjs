@@ -5,11 +5,15 @@ if(language === 'en-US') {
     categoriesTitle.innerText = 'Categories'
     favoritesButton.innerText = 'Favorites'
     languagesTitle.innerText = 'Languages'
+    followUsTitle.innerText = 'Follow us'
+    subscribeButton.innerText = 'Subscribe now'
 } else {
     categoriesTitle.innerHTML = 'Categorias'
     categoriesTitle.innerText = 'Categorías'
     favoritesButton.innerText = 'Favoritos'
     languagesTitle.innerText = 'Idiomas'
+    followUsTitle.innerText = 'Siguenos'
+    subscribeButton.innerText = 'Suscribete'
 }
 
 
@@ -19,6 +23,7 @@ burguerMenu.addEventListener('click', ()=> {
     line2.classList.toggle('activeline2__bars-menu')
     line3.classList.toggle('activeline3__bars-menu')
     menu.classList.toggle('active-menu')
+    menu.classList.remove('active-menu-list-active')
     if (list.classList.contains('active-menu-ul')) {
         list.classList.remove('active-menu-ul')
         rightArrow.classList.remove('active-right-arrow')
@@ -52,5 +57,6 @@ categorieslist.addEventListener('click', ()=> {
         item.classList.toggle('active-list-item')
     })
     rightArrow.classList.toggle('active-right-arrow')
+    menu.classList.toggle('active-menu-list-active')
 })
 

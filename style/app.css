@@ -3,6 +3,7 @@
 @import url(./genres.css);
 @import url(./category-view.css);
 @import url(./movieDetails.css);
+@import url(./footer.css);
 *{
     margin: 0;
     padding: 0;
@@ -17,6 +18,8 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     background-color: var(--dark-color);
     width: 100vw;
     font-family: 'Jockey One', sans-serif;

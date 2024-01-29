@@ -56,6 +56,8 @@ englishButton.addEventListener('click', () => {
     categoriesTitle.innerText = 'Categories'
     favoritesButton.innerText = 'Favorites'
     languagesTitle.innerText = 'Languages'
+    followUsTitle.innerText = 'Follow us'
+    subscribeButton.innerText = 'Subscribe now'
     navigator();
     trendingPreviewMoviesContainer.innerHTML = ''
     getTrendingMoviesPreview()
@@ -68,6 +70,8 @@ spanishButton.addEventListener('click', () => {
     categoriesTitle.innerText = 'Categorías'
     favoritesButton.innerText = 'Favoritos'
     languagesTitle.innerText = 'Idiomas'
+    followUsTitle.innerText = 'Siguenos'
+    subscribeButton.innerText = 'Suscribete'
     navigator();
     trendingPreviewMoviesContainer.innerHTML = ''
     getTrendingMoviesPreview()
@@ -176,6 +180,7 @@ function categoriesPage() {
     movieDetailsSection.classList.add('inactive')
     categoryView.classList.remove('inactive')
     categoryViewLoading.classList.remove('inactive')
+    likeSection.classList.add('inactive')
     getCategoriesPreview()
     const fullId = location.hash.split('-', (location.hash).length) // [#category=12, category.name]
     const categoryId = fullId[0].split('=', (fullId[0].length));  //  [#category=, 12]
@@ -191,6 +196,7 @@ function favoritesPage() {
     genreSection.classList.add('inactive')
     movieDetailsSection.classList.add('inactive')
     categoryView.classList.add('inactive')
+    footerSection.classList.remove('inactive')
     removeMenu()
  
     // if (window.innerWidth < 768) {

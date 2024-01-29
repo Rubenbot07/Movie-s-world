@@ -232,6 +232,7 @@ async function getCategoriesPreview() {
             const categoryViewTitle = document.querySelector('.category-view-title')
             categoryViewTitle.innerHTML = category.name
             location.hash = (`#category=${category.id}-${category.name}`)
+            likeContainer.classList.add('inactive')
             listItem.classList.toggle('active-list-item')
             list.classList.toggle('active-menu-ul')
             rightArrow.classList.toggle('active-right-arrow')

@@ -62,3 +62,8 @@ const trailerLoading = document.querySelector('.trailer-loading')
 //LIKE SECTION
 const likeSection = document.querySelector('.liked-container')
 const likeContainer = document.querySelector('.liked-movies-container')
+
+// FOOTER 
+const footerSection = document.querySelector('footer')
+const subscribeButton = document.querySelector('.subscribe-button')
+const followUsTitle = document.querySelector('.follow-us-title')
