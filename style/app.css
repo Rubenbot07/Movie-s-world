@@ -23,6 +23,7 @@ body {
     background-color: var(--dark-color);
     width: 100vw;
     font-family: 'Jockey One', sans-serif;
+    min-height: 100vh;
 }
 .titles {
     display: flex;

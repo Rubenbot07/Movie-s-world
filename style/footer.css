@@ -3,11 +3,10 @@ footer {
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    flex-shrink: 0;
     gap: 20px;
     width: 100vw;
     height: fit-content;
-    margin-block-start: 54px;
+    margin-block-start: auto;
     padding: 16px;
     background-color: var(--main-color);
     z-index: 2;
@@ -61,4 +60,9 @@ footer {
     border: none;
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
+}
+@media (min-width: 768px) {
+    footer {
+      margin-top: auto;
+    }
 }
